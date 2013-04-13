@@ -1,7 +1,7 @@
 
 if (Meteor.isClient) {
   CodeSession = new Meteor.Collection("CodeSessions");
-
+  cocodojo = {};
   Meteor.startup(function () {
     Backbone.history.start({pushState: true});
     $(document).ready(function() {
