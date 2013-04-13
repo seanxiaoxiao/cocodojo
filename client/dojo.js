@@ -26,16 +26,17 @@ Deps.autorun(function() {
 
 
 
-var Drawing = function(type, attrs) {
+var Drawing = function(type, options) {
   this.type = type;
-  this.attrs = attrs;
+  this.options = options;
+  this.attrs = {}
   this.data = {};
   this.init();
   return this;
 }
 
 Drawing.prototype.init = function(){
-    this.element = this[this.type].apply(this, this.attrs);
+    this.element = this[this.type].apply(this, this.options);
     if(this.element == null) return;
     
     // connect sub object to the Drawing object
@@ -54,6 +55,9 @@ Drawing.prototype.init = function(){
     }, null, this, this);
     this.element.dblclick(function(){
     }, this);
+}
+Drawing.prototype.stringify = function(){
+    return { type: this.type, attrs: this.attrs, options: this.options};
 }
 Drawing.prototype.line = function(paper, startX, startY, endX, endY){
     paper.setStart();
@@ -117,10 +121,10 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
   }
   return paper.setFinish();
 }
-Drawing.prototype.updateAttrs = function(){
-    this.element.attr.apply(this.element, arguments);
+Drawing.prototype.updateAttrs = function(key, value){
+    this.element.attr(key, value);
+    this.attrs[key] = value; 
 }
-
 Drawing.prototype.remove = function(){
     this.element.remove();
     delete this;
@@ -153,17 +157,16 @@ Template.canvas.rendered = function(){
             if(!line.hasOwnProperty("element")){
                 line.element = new Drawing("line", [paper, line.x, line.y, x, y]);
                 line.element.codeSessionId = Session.get("codeSessionId");
-                SessionGraph.insert({graph: line.element});
+                console.log(JSON.stringify(line.element.stringify()));
             }
             else{
                 line.element.updateAttrs("path", "M" + line.x + "," + line.y + "L" + x + "," + y);
-              console.log(new Date() - lastDate);
+                /* console.log(new Date() - lastDate);
               console.log(new Date() - lastDate > 5000);
                 if (new Date() - lastDate > 5000) {
-                  CodeSession.update({_id: Session.get("codeSessionId")}, {"$set": {graphs: line.element }});
                   lastDate = new Date();
-                }
-                console.log(line.element);
+                }*/
+                //console.log(line.element);
             }
         }, function(x, y , event){
             //drag Start
@@ -172,6 +175,9 @@ Template.canvas.rendered = function(){
             line = {x: x, y: y};
         }, function(x, y, event){
             background.undrag();
+            console.log(line.element.stringify());
+            SessionGraph.insert({graph: line.element.stringify()});
+            //CodeSession.update({_id: Session.get("codeSessionId")}, {"$set": {graphs: line.element.stringify() }});
         });
 
     });
@@ -202,7 +208,7 @@ Template.canvas.rendered = function(){
         }, background);
     });
 
-
+  /*
   var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
 
   //Create a reference to the pixel data for our drawing.
@@ -268,7 +274,8 @@ Template.canvas.rendered = function(){
   pixelDataRef.on('child_added', drawPixel);
   pixelDataRef.on('child_changed', drawPixel);
   pixelDataRef.on('child_removed', clearPixel);
-}
+*/
+ }
 
 
 var CocoDojoRouter = Backbone.Router.extend({
