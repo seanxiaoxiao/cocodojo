@@ -129,7 +129,7 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
         if (level == treeHeight - 1) {
             for (var i = 0; i < Math.pow(2, treeHeight - 1); i++) {
                 var node = paper.circle(startX + i * r + 2 * i * r, startY + level * 2 * r, r).attr({fill:"white"});
-                var text = paper.text(startX + i * r + 2 * i * r, startY + level * 2 * r, r, i);
+                var text = paper.text(startX + i * r + 2 * i * r, startY + level * 2 * r, key);
                 temp.push(node);
                 key += 1;
             }
@@ -138,8 +138,8 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
             for (var i = 0; i < Math.pow(2, level); i++) {
                 var cx = (last_children[last_index].attrs.cx + last_children[last_index + 1].attrs.cx) / 2;
                 var cy = startY + level * 2 * r; 
-                paper.path("M" + last_children[last_index].attrs.cx + "," + last_children[last_index].attrs.cy + "L" + cx + "," + cy);
-                paper.path("M" + last_children[last_index + 1].attrs.cx + "," + last_children[last_index +1].attrs.cy + "L" + cx + "," + cy);
+                var e = paper.path("M" + last_children[last_index].attrs.cx + "," + last_children[last_index].attrs.cy + "L" + cx + "," + cy);
+                e = paper.path("M" + last_children[last_index + 1].attrs.cx + "," + last_children[last_index +1].attrs.cy + "L" + cx + "," + cy);
                 last_index += 2;
                 var node = paper.circle(cx, cy, r).attr({fill:"white"});
                 var text = paper.text(cx, startY + level * 2 * r, key);
@@ -164,7 +164,7 @@ Drawing.prototype.remove = function () {
 Template.canvas.rendered = function () {
 
     var width = 1000;
-    var height = 1000;
+    var height = 500;
     var dataRef = new Firebase('https://sean-firebase.firebaseio.com/');
     var paper = Raphael(document.getElementById("canvas"), width, height);
     var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
@@ -337,16 +337,16 @@ Template.canvas.rendered = function () {
         });
     });
     $("#treeButton").click(function (event) {
-       
+        var element = null; 
         var handler = function(event, x, y){
             x -= paper.canvas.offsetLeft;
             y -= paper.canvas.offsetTop;
-            var element = new Drawing("binaryTree", [paper, x, y, 4]); 
+            element = new Drawing("binaryTree", [paper, x, y, 4]); 
+        var newPushRef = dataRef.push();
+        newPushRef.set(element.simplify());
             background.unclick(handler);
         };
         background.click(handler);
-        var newPushRef = dataRef.push();
-        newPushRef.set(element.simplify());
     });
     $("#trashButton").click(function (event) {
         paper.clear();
