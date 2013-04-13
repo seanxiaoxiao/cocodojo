@@ -131,7 +131,6 @@ var CocoDojoRouter = Backbone.Router.extend({
     ":session_id": "dojo"
   },
   dojo: function (codeSessionId) {
-    console.log(codeSessionId);
     Session.set("codeSessionId", codeSessionId);
   },
   setCodeSession: function(codeSessionId) {

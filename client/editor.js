@@ -4,6 +4,18 @@ Template.editor.codeSession = function() {
   return CodeSession.findOne({_id: codeSessionId});
 };
 
+Template.editor.events({
+
+  'dropover #editorInstance' : function(e, t) {
+    e.preventDefault();
+  },
+
+  'drop #editorInstance' : function(e, t) {
+    e.preventDefault();
+  }
+
+});
+
 Template.editor.rendered = function() {
   cocodojo.editor = {};
   cocodojo.editor.updateDue = false;
@@ -39,4 +51,19 @@ Template.editor.rendered = function() {
     }
   });
 
+  cocodojo.editor.editorInstance.addEventListener("drop", function(e) {
+    // find image data from e.target
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e);
+    e.dataTransfer.setData("Text", imageText);
+  });
+
+  cocodojo.editor.editorInstance.addEventListener("dropover", function(e) {
+    // find image data from e.target
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e);
+    e.dataTransfer.setData("Text", imageText);
+  });
 };
