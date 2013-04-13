@@ -24,6 +24,7 @@ Template.editor.rendered = function() {
   cocodojo.editor.local_uid = (((1+Math.random())*0x10000)|0).toString(16).slice(1);
   cocodojo.editor.editorInstance = ace.edit("editorInstance");
   cocodojo.editor.editorInstance.setTheme("ace/theme/monokai");
+  cocodojo.editor.editorInstance.setFontSize(14);
   cocodojo.editor.editorInstance.getSession().setMode("ace/mode/javascript");
 
   cocodojo.editor.update = function(deltas){
@@ -88,12 +89,10 @@ Template.editor.rendered = function() {
   });
 
   $('#editorLang').on('change', function(e){
-    console.log("test");
     cocodojo.editor.editorInstance.getSession().setMode("ace/mode/"+$(this).val());
   });
 
   $('#editorTheme').on('change', function(e){
-    console.log("test2");
     cocodojo.editor.editorInstance.setTheme("ace/theme/"+$(this).val());
   });
 
