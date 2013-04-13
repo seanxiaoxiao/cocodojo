@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/editor.css" afterPath="$PROJECT_DIR$/client/css/editor.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.js" afterPath="$PROJECT_DIR$/client/dojo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.html" afterPath="$PROJECT_DIR$/client/editor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.js" afterPath="$PROJECT_DIR$/client/editor.js" />
     </list>
     <ignored path="cmu_hackathon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,7 +28,7 @@
       <file leaf-file-name="dojo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/dojo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="6" selection-start="6394" selection-end="6394" vertical-scroll-proportion="0.81632656">
+            <state line="297" column="38" selection-start="9828" selection-end="9828" vertical-scroll-proportion="0.89910316">
               <folding />
             </state>
           </provider>
@@ -54,7 +57,20 @@
           <provider selected="true" editor-type-id="text-editor">
             <state line="5" column="0" selection-start="121" selection-end="132" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1365880236000" expanded="true" signature="1745:2209" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="1350:1917" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="1552:1598" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="1733:1857" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="1984:2130" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2326:2523" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2307:2519" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2396:2508" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2410:2500" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2571:3991" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2671:3992" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="2752:3988" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="4277:4505" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="4394:4501" placeholder="{...}" />
+                <marker date="1365886402000" expanded="true" signature="4604:4679" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -445,7 +461,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="121" selection-end="132" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1365880236000" expanded="true" signature="1745:2209" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="1350:1917" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="1552:1598" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="1733:1857" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="1984:2130" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2326:2523" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2307:2519" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2396:2508" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2410:2500" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2571:3991" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2671:3992" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="2752:3988" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="4277:4505" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="4394:4501" placeholder="{...}" />
+            <marker date="1365886402000" expanded="true" signature="4604:4679" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -487,7 +516,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/dojo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="6" selection-start="6394" selection-end="6394" vertical-scroll-proportion="0.81632656">
+        <state line="297" column="38" selection-start="9828" selection-end="9828" vertical-scroll-proportion="0.89910316">
           <folding />
         </state>
       </provider>

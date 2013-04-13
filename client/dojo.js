@@ -142,8 +142,6 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
     return paper.setFinish();
 }
 Drawing.prototype.updateAttrs = function (key, value) {
-    console.log("update");
-    console.log(key + ":" + value);
     this.element.attr(key, value);
     this.attrs[key] = value;
     return this;
@@ -169,7 +167,6 @@ Template.canvas.rendered = function () {
         for (var key in graphobj.attrs) {
             drawing.updateAttrs(key, graphobj.attrs[key]);
         }
-        console.log(drawing);
     };
 
     dataRef.on('child_added', drawGraph);
@@ -206,7 +203,6 @@ Template.canvas.rendered = function () {
             el2.unclick(deleteHandler);
             el2.unhover(highlightHandler, unHighlightHandler);
         });
-        console.log(this.data("mother"));
         this.data("mother").element.g.remove();
         this.data("mother").remove();
     };
@@ -240,6 +236,8 @@ Template.canvas.rendered = function () {
         circle = {x:x, y:y};
       }, function () {
         //drag end
+        var newPushRef = dataRef.push();
+        newPushRef.set(circle.element.simplify());
         circle = null;
         background.undrag(handler);
       });
@@ -291,11 +289,13 @@ Template.canvas.rendered = function () {
 
   $("#trashButton").click(function (event) {
     paper.clear();
+    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
     dataRef.remove();
   });
 
   dataRef.on('child_removed', function() {
     paper.clear();
+    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
   });
 
 }
