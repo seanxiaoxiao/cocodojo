@@ -23,7 +23,9 @@ Template.editor.rendered = function() {
   cocodojo.editor.currentDelta = 0;
   cocodojo.editor.local_uid = (((1+Math.random())*0x10000)|0).toString(16).slice(1);
   cocodojo.editor.editorInstance = ace.edit("editorInstance");
+  //cocodojo.editor.editorInstance.setFontSize(14);
   cocodojo.editor.editorInstance.setTheme("ace/theme/monokai");
+  
   cocodojo.editor.editorInstance.getSession().setMode("ace/mode/javascript");
 
   cocodojo.editor.update = function(deltas){
@@ -87,9 +89,16 @@ Template.editor.rendered = function() {
     }
   });
 
+  $('#editorLang').on('change', function(e){
+    cocodojo.editor.editorInstance.getSession().setMode("ace/mode/"+$(this).val());
+  });
+
+  $('#editorTheme').on('change', function(e){
+    cocodojo.editor.editorInstance.setTheme("ace/theme/"+$(this).val());
+  });
 
 
-
+  // Drag and Drop File function
   $('#editorInstance').on('ondragover',function() {
     e.stopPropagation();
     return false;
@@ -123,6 +132,7 @@ Template.editor.rendered = function() {
       filepicker.read(fpfiles[0], function(data){
         var extHash = {
           'js' : 'javascript',
+          'c' : 'c_cpp',
           'cpp' : 'c_cpp',
           'java' : 'java',
           'ruby' : 'ruby',
@@ -130,7 +140,9 @@ Template.editor.rendered = function() {
         };
         var extName = fpfiles[0].filename.split('.').pop();
         cocodojo.editor.editorInstance.getSession().setMode("ace/mode/"+extHash[extName]);
+        $('#editorLang option[value="'+extHash[extName]+'"]').attr('selected','');
         cocodojo.editor.editorInstance.setValue(data);
+        cocodojo.editor.editorInstance.moveCursorTo(0, 0);
       });
     },
     onError: function(type, message) {
