@@ -16,14 +16,13 @@ Template.conversations.all = function() {
     console.log(allConversation[i].message);
     result += allConversation[i].message + "\n";
   }
-  return
+  return result;
 }
 
 
 Template.conversations.events = {
   'click #sendBtn' : function () {
     var text = $("#message").val();
-    console.log(text);
     var codeSessionId = Session.get("codeSessionId");
     Conversation.insert({message: text, codeSessionId: codeSessionId});
   }
