@@ -19,9 +19,6 @@ if (Meteor.isClient) {
         var codeSessionId = CodeSession.insert({name: "New Dojo"});
         Router.navigate(codeSessionId, false);
       }
-        var editorInstance = ace.edit("editorInstance");
-  editorInstance.setTheme("ace/theme/monokai");
-  editorInstance.getSession().setMode("ace/mode/javascript");
     });
   });
 }
