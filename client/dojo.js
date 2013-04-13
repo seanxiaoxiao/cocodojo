@@ -163,8 +163,8 @@ Drawing.prototype.remove = function () {
 
 Template.canvas.rendered = function () {
 
-    var width = 1000;
-    var height = 500;
+    var width = "100%";
+    var height = 482;
     var dataRef = new Firebase('https://sean-firebase.firebaseio.com/');
     var paper = Raphael(document.getElementById("canvas"), width, height);
     var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});

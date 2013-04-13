@@ -7,6 +7,10 @@
       url('tagesscrift.svg#font') format('svg');
 }
 
+#canvas {
+    margin-bottom: 12px;
+}
+
 .icon {
   cursor: pointer;;
   list-style: none;

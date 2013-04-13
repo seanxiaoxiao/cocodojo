@@ -68,7 +68,7 @@ Template.editor.rendered = function() {
     codeSession = new Template.editor.codeSession();
     cocodojo.editor.update(codeSession.Deltas);
     cocodojo.editor.addComment(codeSession.Comments);
-  }, 1200);
+  }, 2000);
   
 
   // Manual Manipulation
@@ -94,7 +94,7 @@ Template.editor.rendered = function() {
         cocodojo.editor.addComment(newDoc.Comments);
       }
     });
-  }, 1200);
+  }, 2000);
 
 
 
