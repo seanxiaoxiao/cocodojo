@@ -1,0 +1,95 @@
+<head>
+    <script src="jquery-1.9.1.min.js"></script>
+<script src="raphael-min.js"></script>
+<script>
+    $(window).ready(function(){
+    var width = 600;
+    var height = 600;
+    var paper = Raphael(document.getElementById("canvas"), width, height);
+    //circle(paper,70, 70, 50);
+    //line(paper,10, 20, 30, 40);
+    //rectangle(paper, 20, 20, 40, 50);
+    //oneDimensionArray(paper, 10, 20, [1,2,3, 4, 5]);
+    binaryTree2(paper, 10, 10, 5);
+});
+function rectangle(paper, startX, startY, width, height){
+    return paper.rect(startX, startY, width, height);
+}
+function circle(paper, centerX, centerY, radius){
+    return paper.circle(centerX, centerY, radius);
+}
+function line(paper, startX, startY, endX, endY){
+    return paper.path("M" + startX +"," + startY + "L" + endX + "," + endY);
+}
+function text(paper, startX, startY, text){
+    return paper.text(startX, startY, text);
+}
+function oneDimensionArray(paper, startX, startY, elements){
+    paper.setStart();
+    var unit_width = 30;
+    var unit_height = 30;
+    for(var i = 0; i< elements.length; i++){
+        var t = text(paper, startX + i*unit_width + unit_width/2, startY, i);
+        var h = t.getBBox().height;
+        rectangle(paper, startX+ i* unit_width, startY + h, unit_width, unit_height);
+        var t = text(paper, startX + i*unit_width + unit_width/2, startY+h+unit_height/2, elements[i]);
+    } 
+    return paper.setFinish();
+}
+
+function binaryTree2(paper, startX, startY, treeHeight){
+    var r = 15;
+    var separtion = r; 
+    for(var level= treeHeight-1; level >=0 ; level--){
+        temp = [];
+        for(var i= 0; i< Math.pow(2, treeHeight - 1); i++){
+            circle(paper, startX + i * separtion + 2 * i * r , startY + level * r, r);
+        }
+        separtion = r * 3
+
+    }
+    
+}
+function binaryTree(paper, startX, startY, treeHeight){
+    var r = 5;
+    for(var i= treeHeight-1; i >=0 ;i--){
+        var last_children;
+        if (i > 0){
+            last_children = new Array(Math.pow(2, i));
+        }
+        console.log(last_children.length);
+        var last_index = 0;
+        for(var j=0; j<= Math.pow(2, i -1); j ++){
+            //leaf
+            if(i == treeHeight -1 ){
+                
+                var node = circle(paper, startX *2 - 3* Math.pow(2, i-1) * r + 3*r, startY + r , r);
+                last_children[j] = node;
+                console.log(node);
+            }
+            //above
+            else{
+                //var node = circle(paper, last_children[last_index].
+
+            }
+        }
+    }
+
+
+
+/*
+
+    var root = circle(paper, startX, startY, unit_width);
+    for(var i= 0; i<treeHeight ;i++){
+
+        var left = circle(paper, startX - unit_width * 5/2 , startY + 2.5 * unit_width, unit_width
+        var rightt = circle(paper, startX + unit_width * 5/2 , startY + 2.5 * unit_width, unit_width);
+    }
+    */
+}
+</script>
+</head>
+<body>
+    <div id="canvas">
+    </div>
+</body>
