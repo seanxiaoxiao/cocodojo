@@ -17,7 +17,7 @@ var codeSessionHandle = null;
 Deps.autorun(function() {
   var codeSessionId = Session.get('codeSessionId');
   if (codeSessionId) {
-    codeSessionHandle = Meteor.subscribe('codeSessionId', codeSessionId);
+    codeSessionHandle = Meteor.subscribe('codeSession', codeSessionId);
   }
   else {
     codeSessionHandle = null;
