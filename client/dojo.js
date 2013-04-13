@@ -143,17 +143,22 @@ Drawing.prototype.remove = function () {
 Template.canvas.rendered = function () {
   var dataref = new firebase('https://sean-firebase.firebaseio.com/');
   var drawgraph = function (snapshot) {
+    paper.clear();
+    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
     var graphobj = snapshot.val();
     console.log(graphobj);
+    
+    //var drawing = new Drawing(graphobj.type, 
+  
   };
+  var paper = Raphael(document.getElementById("canvas"), width, height);
+  var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
 
   dataRef.on('child_added', drawGraph);
 
   var width = 1000;
   var height = 1000;
 
-  var paper = Raphael(document.getElementById("canvas"), width, height);
-  var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
 
   var graphs = [];
 
