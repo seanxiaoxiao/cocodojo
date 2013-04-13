@@ -5,6 +5,8 @@
  * Time: 11:03 PM
  * To change this template use File | Settings | File Templates.
  */
+
+
 Template.dojo.codeSession = function() {
   var codeSessionId = Session.get("codeSessionId");
   return CodeSession.findOne({_id: codeSessionId});
@@ -22,17 +24,7 @@ Deps.autorun(function() {
   }
 });
 
-var CocoDojoRouter = Backbone.Router.extend({
-  routes: {
-    ":session_id": "dojo"
-  },
-  dojo: function (codeSessionId) {
-    Session.set("codeSessionId", codeSessionId);
-  },
-  setCodeSession: function(codeSessionId) {
-    this.navigate(codeSessionId, true);
-  }
-});
+
 
 var Drawing = function(type, attrs) {
   this.type = type;
@@ -43,7 +35,6 @@ var Drawing = function(type, attrs) {
 }
 
 Drawing.prototype.init = function(){
-
     this.element = this[this.type].apply(this, this.attrs);
     if(this.element == null) return;
     
@@ -75,7 +66,7 @@ Drawing.prototype.circle = function(paper, centerX, centerY, radius){
     return paper.setFinish();
 }
 Drawing.prototype.getData = function(key){
-    return this.data[key];
+  return this.data[key];
 }
 Drawing.prototype.rectangle = function(paper, startX, startY, width, height){
     paper.setStart();
@@ -123,12 +114,13 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
             }
         }
         last_children = temp;
-    }
-    return paper.setFinish();
+  }
+  return paper.setFinish();
 }
-Drawing.prototype.updateAttrs = function(){
-    this.element.attr.apply(this.element, arguments);
+Drawing.prototype.updateAttrs = function(attrs){
+    this.element.attr(attrs);
 }
+
 Drawing.prototype.remove = function(){
     this.element.remove();
     delete this;
@@ -198,4 +190,19 @@ Template.dojo.rendered = function(){
     });
 }
 
+
+var CocoDojoRouter = Backbone.Router.extend({
+  routes: {
+    ":session_id": "dojo"
+  },
+  dojo: function (codeSessionId) {
+    console.log(codeSessionId);
+    Session.set("codeSessionId", codeSessionId);
+  },
+  setCodeSession: function(codeSessionId) {
+    this.navigate(codeSessionId, true);
+  }
+});
+
 Router = new CocoDojoRouter;
+
