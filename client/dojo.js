@@ -21,12 +21,18 @@ Deps.autorun(function() {
 
 var CocoDojoRouter = Backbone.Router.extend({
   routes: {
-    ":session_id": "main"
+    ":session_id": "dojo"
   },
-  main: function (codeSessionId) {
+  home: function() {
+    var id = CodeSession.insert({name: "New Dojo"});
+    Session.set("codeSessionId", codeSessionId);
+
+  },
+  dojo: function (codeSessionId) {
     Session.set("codeSessionId", codeSessionId);
   },
-  setCodeSession: function (codeSessionId) {
+
+  setCodeSession: function(codeSessionId) {
     this.navigate(codeSessionId, true);
   }
 });
