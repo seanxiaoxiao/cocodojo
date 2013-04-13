@@ -21,12 +21,18 @@ Template.conversations.all = function() {
 
 Template.conversations.events = {
   'click #sendBtn': function() {
+    if ($("#message").val() == "") {
+      return;
+    }
     var text = "Anonymous: " + $("#message").val();
     CodeSession.update({_id: Session.get("codeSessionId")}, {"$push": {messages: text}});
     $("#message").val("");
   },
   'keydown #message': function(evt) {
     if (evt.which === 13) {
+      if ($("#message").val() == "") {
+        return;
+      }
       var text = "Anonymous: " + $("#message").val();
       CodeSession.update({_id: Session.get("codeSessionId")}, {"$push": {messages: text}});
       $("#message").val("");

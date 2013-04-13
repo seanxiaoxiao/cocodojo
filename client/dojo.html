@@ -1,22 +1,27 @@
 <template name="dojo">
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span9">
-          <div class="row-fluid">
+        <div class="row-fluid">
+            
+            <div class="span9">
+                <div class="row-fluid">
+                </div>
+                <div id="editorContainer" class="hero-unit">
+                    {{> editor}}
+                    <div class="toggle">
+                        <label class="toggle-radio" for="toggleOption2">Code</label>
+                        <input type="radio" name="toggleOptions" id="toggleOption1" value="option1" checked="checked">
+                        <label class="toggle-radio" for="toggleOption1">Canvas</label>
+                        <input type="radio" name="toggleOptions" id="toggleOption2" value="option2">
+                    </div>
+                </div>
+                <div class="media">
+                    {{> canvas}}
+                </div>
+            </div>
 
-          </div>
-          <div id="editorContainer" class="hero-unit">
-            {{> editor}}
-          </div>
-
-          
+            <div class="span3" id="conversations">
+                {{> conversations}}
+            </div>
         </div>
-        <div class="span3" id="conversations">
-          {{> conversations}}
-        </div>
-        <div class="span3">
-
-        </div>
-      </div>
     </div>
 </template>
