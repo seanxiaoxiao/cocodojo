@@ -217,8 +217,8 @@ Template.canvas.rendered = function(){
             el.hover(highlightHandler, unHighlightHandler, el, el);
         }, background);
     });
-  }
 }
+
 
 var CocoDojoRouter = Backbone.Router.extend({
   routes: {
