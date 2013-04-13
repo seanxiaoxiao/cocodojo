@@ -34,4 +34,20 @@ var CocoDojoRouter = Backbone.Router.extend({
   }
 });
 
+Template.dojo.rendered = function(){
+        var width = 1000;
+        var height = 1000;
+        var paper = Raphael(document.getElementById("canvas"), width, height);
+        var drawing = new Drawing("line", [paper,10, 20, 30, 40]);
+        var drawing = new Drawing("rectangle", [paper,10, 10, 100, 200]); 
+        var drawing = new Drawing("text", [paper,10, 10, "Helllo, world!"]); 
+        var obj = new Drawing("oneDimensionArray", [paper, 10, 20, [1,2,3, 4, 5]]);
+
+        var drawing = new Drawing("circle", [paper,70, 70, 50]);
+        var rectangle = new Drawing("rectangle", [paper, 20, 20, 40, 50]);
+        var binaryTree = new Drawing("binaryTree", [paper, 100, 20, 4]);
+    console.log("hrere");
+}
+
+
 Router = new CocoDojoRouter;
