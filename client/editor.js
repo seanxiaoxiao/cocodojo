@@ -27,6 +27,7 @@ Template.editor.rendered = function() {
   cocodojo.editor.editorInstance.getSession().setMode("ace/mode/javascript");
 
   cocodojo.editor.update = function(deltas){
+    if(deltas === undefined){ return false; }
     var deltaLength = deltas.length;
     var pendDeltas = [];
     for(var i=cocodojo.editor.currentDelta; i<deltaLength; ++i){
@@ -47,7 +48,6 @@ Template.editor.rendered = function() {
   setTimeout( function(){
     codeSession = new Template.editor.codeSession();
     cocodojo.editor.update(codeSession.Deltas);
-    //console.log(codeSession);
   }, 1000);
   
 
@@ -88,7 +88,7 @@ Template.editor.rendered = function() {
   });
 
 
-  
+
 
   $('#editorInstance').on('ondragover',function() {
     e.stopPropagation();
@@ -121,7 +121,15 @@ Template.editor.rendered = function() {
     onSuccess: function(fpfiles) {
 //      $("#exampleDropPane").text("Done, see result below");
       filepicker.read(fpfiles[0], function(data){
-        console.log(fpfiles[0].filename);
+        var extHash = {
+          'js' : 'javascript',
+          'cpp' : 'c_cpp',
+          'java' : 'java',
+          'ruby' : 'ruby',
+          'html' : 'html'
+        };
+        var extName = fpfiles[0].filename.split('.').pop();
+        cocodojo.editor.editorInstance.getSession().setMode("ace/mode/"+extHash[extName]);
         cocodojo.editor.editorInstance.setValue(data);
       });
     },
