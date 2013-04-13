@@ -12,10 +12,4 @@ if (Meteor.isClient) {
     });
   });
 
-  Deps.afterFlush(function() {
-
-    var editorInstance = ace.edit("editorInstance");
-    editorInstance.setTheme("ace/theme/monokai");
-    editorInstance.getSession().setMode("ace/mode/javascript");
-  });
 }
