@@ -212,6 +212,7 @@ Template.canvas.rendered = function () {
     }
     var circle = null;
     $("#circleButton").click(function () {
+      console.log("xxxx");
       var handler = function (dx, dy, x, y, event) {
         x -= paper.canvas.offsetLeft;
         y -= paper.canvas.offsetTop;
@@ -277,13 +278,14 @@ Template.canvas.rendered = function () {
   });
 
   $("#trashButton").click(function (event) {
-    paper.forEach(function (el) {
-      //add click listener on every object;
-      if (el == this) return;
-      el.click(deleteHandler);
-      el.hover(highlightHandler, unHighlightHandler, el, el);
-    }, background);
+    paper.clear();
+    dataRef.remove();
   });
+
+  dataRef.on('child_removed', function() {
+    paper.clear();
+  });
+
 }
 var CocoDojoRouter = Backbone.Router.extend({
 
