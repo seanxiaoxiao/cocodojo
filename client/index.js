@@ -21,20 +21,33 @@ if (Meteor.isClient) {
 
       var checkToggleState = function() {
           if (radio.eq(0).is(":checked")) {
-              $(toggle).removeClass("toggle-off");
+            $(toggle).removeClass("toggle-off");
+            $("#editorContainer").fadeIn(1, function() {
+              $(".media").fadeOut(1);
+            })
           } else {
               $(toggle).addClass("toggle-off");
+            $("#editorContainer").fadeOut(1, function() {
+              $(".media").fadeIn(1);
+            })
           }
       };
 
       checkToggleState();
 
       radio.eq(0).click(function() {
-          $(toggle).toggleClass("toggle-off");
+        $(toggle).removeClass("toggle-off");
+        $(".media").fadeOut(618, function() {
+          $("#editorContainer").fadeIn(618);
+        });
       });
 
       radio.eq(1).click(function() {
-          $(toggle).toggleClass("toggle-off");
+        console.log("xxxxx");
+        $(toggle).addClass("toggle-off");
+        $("#editorContainer").fadeOut(618, function() {
+          $(".media").fadeIn(618);
+        });
       });
     };
 
