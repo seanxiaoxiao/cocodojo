@@ -142,8 +142,6 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
     return paper.setFinish();
 }
 Drawing.prototype.updateAttrs = function (key, value) {
-    console.log("update");
-    console.log(key + ":" + value);
     this.element.attr(key, value);
     this.attrs[key] = value;
     return this;
@@ -169,7 +167,6 @@ Template.canvas.rendered = function () {
         for (var key in graphobj.attrs) {
             drawing.updateAttrs(key, graphobj.attrs[key]);
         }
-        console.log(drawing);
     };
 
     dataRef.on('child_added', drawGraph);
@@ -210,7 +207,6 @@ Template.canvas.rendered = function () {
             el2.unclick(deleteHandler);
             el2.unhover(highlightHandler, unHighlightHandler);
         });
-        console.log(this.data("mother"));
         this.data("mother").element.g.remove();
         this.data("mother").remove();
     };
@@ -226,31 +222,29 @@ Template.canvas.rendered = function () {
     };
     var circle = null;
     $("#circleButton").click(function () {
-        console.log("ttt");
-        var handler = function (dx, dy, x, y, event) {
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop;
-            var r = Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
-            if (!circle.hasOwnProperty("element")) {
-                circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]);
-            }
-            else {
-                circle.element.updateAttrs("r", r);
-            }
-        };
-        console.log(background);
-        background.drag(handler, function (x, y) {
-            //drag start
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop;
-            circle = {x:x, y:y};
-        }, function () {
-            var newPushRef = dataRef.push();
-            newPushRef.set(circle.element.simplify());
-            //drag end
-            circle = null;
-            background.undrag(handler);
-        });
+      var handler = function (dx, dy, x, y, event) {
+        x -= paper.canvas.offsetLeft;
+        y -= paper.canvas.offsetTop;
+        var r = Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
+        if (!circle.hasOwnProperty("element")) {
+          circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]);
+        }
+        else {
+          circle.element.updateAttrs("r", r);
+        }
+      };
+      background.drag(handler, function (x, y) {
+        //drag start
+        x -= paper.canvas.offsetLeft;
+        y -= paper.canvas.offsetTop;
+        circle = {x:x, y:y};
+      }, function () {
+        //drag end
+        var newPushRef = dataRef.push();
+        newPushRef.set(circle.element.simplify());
+        circle = null;
+        background.undrag(handler);
+      });
     });
     var square = null;
     $("#squareButton").click(function () {
@@ -297,14 +291,17 @@ Template.canvas.rendered = function () {
         background.click(handler);
     });
 
-    $("#trashButton").click(function (event) {
-        paper.forEach(function (el) {
-            //add click listener on every object;
-            if (el == this) return;
-            el.click(deleteHandler);
-            el.hover(highlightHandler, unHighlightHandler, el, el);
-        }, background);
-    });
+  $("#trashButton").click(function (event) {
+    paper.clear();
+    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
+    dataRef.remove();
+  });
+
+  dataRef.on('child_removed', function() {
+    paper.clear();
+    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
+  });
+
 }
 var CocoDojoRouter = Backbone.Router.extend({
 
