@@ -54,6 +54,12 @@ Template.editor.rendered = function() {
         cocodojo.editor.localComments[comments[i].line] = comments[i].text;
       }
     }
+    var targetElements = $('.ace_gutter-cell');
+    for(var j=0; j<targetElements.length; ++j){
+      if(cocodojo.editor.localComments.hasOwnProperty($(targetElements[j]).html())){
+        $(targetElements[j]).css('background-color', 'khaki');
+      }
+    }
     cocodojo.editor.commentsCount = commentsLength;
   }
 
@@ -185,12 +191,14 @@ Template.editor.rendered = function() {
 //      $("#exampleDropPane").text("Done, see result below");
       filepicker.read(fpfiles[0], function(data){
         var extHash = {
-          'js' : 'javascript',
           'c' : 'c_cpp',
           'cpp' : 'c_cpp',
+          'cs' : 'csharp',
+          'css' : 'css',
+          'html' : 'html',
           'java' : 'java',
-          'ruby' : 'ruby',
-          'html' : 'html'
+          'js' : 'javascript',
+          'ruby' : 'ruby'
         };
         var extName = fpfiles[0].filename.split('.').pop();
         cocodojo.editor.editorInstance.getSession().setMode("ace/mode/"+extHash[extName]);

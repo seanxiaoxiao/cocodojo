@@ -18,13 +18,21 @@ Template.conversations.all = function() {
   }
 }
 
+Template.conversations.rendered = function() {
+  cocodojo.conversation = cocodojo.conversation || {};
+  if (cocodojo.conversation.name == null) {
+    cocodojo.conversation.name = prompt("Please input your user name.") || "Anonymous";
+  }
+};
+
 
 Template.conversations.events = {
+
   'click #sendBtn': function() {
     if ($("#message").val() == "") {
       return;
     }
-    var text = "Anonymous: " + $("#message").val();
+    var text = cocodojo.conversation.name + ": " + $("#message").val();
     CodeSession.update({_id: Session.get("codeSessionId")}, {"$push": {messages: text}});
     $("#message").val("");
   },
@@ -33,10 +41,9 @@ Template.conversations.events = {
       if ($("#message").val() == "") {
         return;
       }
-      var text = "Anonymous: " + $("#message").val();
+      var text = cocodojo.conversation.name + ": " + $("#message").val();
       CodeSession.update({_id: Session.get("codeSessionId")}, {"$push": {messages: text}});
       $("#message").val("");
     }
   }
 }
-
