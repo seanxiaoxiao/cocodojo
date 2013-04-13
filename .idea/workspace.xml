@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="" />
+    <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/conversation.html" afterPath="$PROJECT_DIR$/client/conversation.html" />
+    </list>
     <ignored path="cmu_hackathon.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,11 +49,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="editor.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="6" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.5668693">
+            <state line="110" column="6" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conversation.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/conversation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="207" selection-end="207" vertical-scroll-proportion="-3.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template.conversation.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/template.conversation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="131" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1365871718000" expanded="false" signature="199:251" placeholder="..." />
+                <marker date="1365871718000" expanded="false" signature="375:427" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,15 +135,15 @@
         <option value="$PROJECT_DIR$/server/Conversation.js" />
         <option value="$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/dojo.js" />
         <option value="$PROJECT_DIR$/server/CodeSession.js" />
-        <option value="$PROJECT_DIR$/client/conversation.html" />
         <option value="$PROJECT_DIR$/client/index.js" />
         <option value="$PROJECT_DIR$/client/css/editor.css" />
-        <option value="$PROJECT_DIR$/client/editor.js" />
         <option value="$PROJECT_DIR$/client/dojo.html" />
         <option value="$PROJECT_DIR$/client/cocodojo.html" />
         <option value="$PROJECT_DIR$/client/dojo.js" />
         <option value="$PROJECT_DIR$/client/editor.html" />
         <option value="$PROJECT_DIR$/client/conversation.js" />
+        <option value="$PROJECT_DIR$/client/editor.js" />
+        <option value="$PROJECT_DIR$/client/conversation.html" />
       </list>
     </option>
   </component>
@@ -215,6 +238,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmu_hackathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmu_hackathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".meteor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -263,13 +304,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="806" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5591241" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5591241" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982357" sideWeight="0.44087592" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982357" sideWeight="0.44087592" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -336,13 +377,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/conversation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="38" selection-start="238" selection-end="245" vertical-scroll-proportion="-3.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/CodeSession.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="162" selection-end="370" vertical-scroll-proportion="0.20654045">
@@ -422,8 +456,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/editor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="6" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.5668693">
+        <state line="110" column="6" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/conversation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="207" selection-end="207" vertical-scroll-proportion="-3.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/template.conversation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="131" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1365871718000" expanded="false" signature="199:251" placeholder="..." />
+            <marker date="1365871718000" expanded="false" signature="375:427" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
