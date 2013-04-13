@@ -6,17 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-Coversation = new Meteor.Collection("Conversations");
+Conversation = new Meteor.Collection("Conversations");
 
 Template.conversations.all = function() {
   var codeSessionId = Session.get("codeSessionId");
-  return Conversation.find({codeSessionId: codeSessionId});
+  var allConversation = Conversation.find({codeSessionId: codeSessionId});
+  var result = "";
+  for (var i = 0; i < allConversation.length; i++) {
+    console.log(allConversation[i].message);
+    result += allConversation[i].message + "\n";
+  }
+  return
 }
 
 
-Template.conversations.event = {
-  'click #send' : function () {
-    var text = $("#send-input").text();
+Template.conversations.events = {
+  'click #sendBtn' : function () {
+    var text = $("#message").val();
+    console.log(text);
     var codeSessionId = Session.get("codeSessionId");
     Conversation.insert({message: text, codeSessionId: codeSessionId});
   }
