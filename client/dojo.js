@@ -46,7 +46,11 @@ Drawing.prototype.init = function(){
 
     this.element = this[this.type].apply(this, this.attrs);
     if(this.element == null) return;
-
+    
+    // connect sub object to the Drawing object
+    this.element.data("mother", this);
+    
+    //add listeners 
     this.element.drag(function(dx, dy, x, y, event){
         dx = this.data["adjust_position"].x + dx;
         dy = this.data["adjust_position"].y + dy;
@@ -58,24 +62,30 @@ Drawing.prototype.init = function(){
 
     }, null, this, this);
     this.element.dblclick(function(){
-        this.element.remove();
     }, this);
 }
 Drawing.prototype.line = function(paper, startX, startY, endX, endY){
-    return paper.path("M" + startX +"," + startY + "L" + endX + "," + endY);
+    paper.setStart();
+    paper.path("M" + startX +"," + startY + "L" + endX + "," + endY).attr({"stroke-width": 3});
+    return paper.setFinish();
 }
 Drawing.prototype.circle = function(paper, centerX, centerY, radius){
-    return paper.circle(centerX, centerY, radius).attr("fill", "white");
+    paper.setStart();
+    paper.circle(centerX, centerY, radius).attr("fill", "white");
+    return paper.setFinish();
 }
 Drawing.prototype.getData = function(key){
     return this.data[key];
 }
 Drawing.prototype.rectangle = function(paper, startX, startY, width, height){
-    this.paper = paper;
-    return this.paper.rect(startX, startY, width, height).attr({fill: "white"});
+    paper.setStart();
+    paper.rect(startX, startY, width, height).attr({fill: "white"});
+    return paper.setFinish();
 }
 Drawing.prototype.text = function(paper, startX, startY, text){
-    return paper.text(startX, startY, text);
+    paper.setStart();
+    paper.text(startX, startY, text);
+    return paper.setFinish();
 }
 
 Drawing.prototype.oneDimensionArray = function(paper, startX, startY, elements){
@@ -83,14 +93,15 @@ Drawing.prototype.oneDimensionArray = function(paper, startX, startY, elements){
     var unit_width = 30;
     var unit_height = 30;
     for(var i = 0; i< elements.length; i++){
-        var t = this.text(paper, startX + i*unit_width + unit_width/2, startY, i);
+        var t = paper.text(startX + i*unit_width + unit_width/2, startY, i);
         var h = t.getBBox().height;
-        this.rectangle(paper, startX+ i* unit_width, startY + h, unit_width, unit_height);
-        var t = this.text(paper, startX + i*unit_width + unit_width/2, startY+h+unit_height/2, elements[i]);
+        paper.rect(startX+ i* unit_width, startY + h, unit_width, unit_height).attr({fill: "white"});
+        var t = paper.text(startX + i*unit_width + unit_width/2, startY+h+unit_height/2, elements[i]);
     }
     return paper.setFinish();
 }
 Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
+
     paper.setStart();
     var r = 15;
     var separtion = r;
@@ -99,7 +110,7 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
         last_index = 0;
         if( level == treeHeight - 1){
             for(var i= 0; i< Math.pow(2, treeHeight - 1); i++){
-                var node = this.circle(paper, startX + i * r + 2 * i * r , startY + level * 2 *r, r);
+                var node = paper.circle(startX + i * r + 2 * i * r , startY + level * 2 *r, r).attr({fill: "white"});
                 temp.push(node);
             }
         }
@@ -107,7 +118,7 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
             for(var i= 0; i< Math.pow(2, level); i++){
                 var cx = (last_children[last_index].attrs.cx + last_children[last_index+1].attrs.cx)/2;
                 last_index += 2;
-                var node = this.circle(paper, cx, startY + level * 2 * r , r);
+                var node = paper.circle(cx, startY + level * 2 * r , r).attr({fill: "white"});
                 temp.push(node);
             }
         }
@@ -117,6 +128,10 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
 }
 Drawing.prototype.updateAttrs = function(){
     this.element.attr.apply(this.element, arguments);
+}
+Drawing.prototype.remove = function(){
+    this.element.remove();
+    delete this;
 }
 Template.dojo.rendered = function(){
     var width = 1000;
@@ -155,6 +170,31 @@ Template.dojo.rendered = function(){
             background.undrag();
         });
 
+    });
+    var deleteHandler = function(event){
+        paper.forEach(function(el2){
+            el2.unclick(deleteHandler);
+            el2.unhover(highlighter, highlightRemover);
+        });
+        this.data("mother").element.g.remove();
+        this.data("mother").remove();
+    };
+    var highlighter = function(){
+        this.data("mother").element.g = this.data("mother").element.glow({
+            color: "#0FF",
+            width: 100
+        });
+    };
+    var highlightRemover = function(){
+        this.data("mother").element.g.remove();
+    }
+    $("#deleteButton").click(function(event){
+        paper.forEach(function(el){
+            //add click listener on every object; 
+            if(el == this) return;
+            el.click(deleteHandler);
+            el.hover(highlighter, highlightRemover, el, el);
+        }, background);
     });
 }
 
