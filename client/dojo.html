@@ -11,18 +11,17 @@
 
           <div class="hero-unit">
             <div class="media">
-              <div id="canvas" class="media-body">
-                <p>This is the content of media</p>
+                <div class="media-body">
+                {{> canvas }}
               </div>
             </div>
           </div>
         </div>
+        <div class="span3" id="conversations">
+          {{> conversations}}
+        </div>
         <div class="span3">
-          <div class="well">
-            <p></p>
-            <textarea class="input-block-level" style="margin-top: 0px; margin-bottom: 10px; height: 495px;">Sean: 睇一 睇！</textarea>
-          </div>
-          <a class="btn">Send</a> 
+
         </div>
       </div>
     </div>
