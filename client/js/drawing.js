@@ -22,7 +22,7 @@ Drawing.prototype.init = function(){
     }, null, this, this);
 }
 Drawing.prototype.line = function(paper, startX, startY, endX, endY){
-    return paper.path("M" + startX +"," + startY + "L" + endX + "," + endY);
+    return paper.path("M" + startX +"," + startY + "L" + endX + "," + endY).attr({"stroke-width": 5});
 }
 Drawing.prototype.circle = function(paper, centerX, centerY, radius){
     return paper.circle(centerX, centerY, radius).attr("fill", "white");
@@ -35,7 +35,10 @@ Drawing.prototype.rectangle = function(paper, startX, startY, width, height){
     return this.paper.rect(startX, startY, width, height).attr({fill: "white"});
 }
 Drawing.prototype.text = function(paper, startX, startY, text){
-    return paper.text(startX, startY, text);
+    return paper.text(startX, startY, text).dblclick(function(){
+
+
+    });
 }
 
 Drawing.prototype.oneDimensionArray = function(paper, startX, startY, elements){

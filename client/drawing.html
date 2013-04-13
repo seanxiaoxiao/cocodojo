@@ -1,5 +1,9 @@
-<script src="drawing.js"></script>
+
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/raphael-min.js"></script>
+<script src="js/drawing.js"></script>
 <script>
+    $(window).ready(function(){
         var width = 1000;
         var height = 1000;
         var paper = Raphael(document.getElementById("canvas"), width, height);
@@ -11,7 +15,8 @@
         var drawing = new Drawing("circle", [paper,70, 70, 50]);
         var rectangle = new Drawing("rectangle", [paper, 20, 20, 40, 50]);
         var binaryTree = new Drawing("binaryTree", [paper, 100, 20, 4]);
-    console.log("hrere");
+        console.log("hrere");
+    });
 </script>
 <body>
     <div id="canvas">
