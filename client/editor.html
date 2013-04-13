@@ -1,4 +1,20 @@
 <template name="editor">
+	<div id="editorTools">
+		<select id="editorLang">
+			<option value="html">HTML</option>
+			<option value="javascript" selected>JavaScript</option>
+			<option value="c_cpp">C/C++</option>
+			<option value="java">Java</option>
+			<option value="ruby">Ruby</option>
+		</select><br>
+		<select id="editorTheme">
+			<option value="monokai" selected>Monokai</option>
+			<option value="ambiance">Ambiance</option>
+			<option value="textmate">TextMate</option>
+			<option value="xcode">XCode</option>
+			<option value="terminal">Terminal</option>
+		</select>
+	</div>
     <div id="editorInstance"></div>
     <div class="progress">
         <div class="bar"></div>
