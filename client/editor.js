@@ -23,8 +23,9 @@ Template.editor.rendered = function() {
   cocodojo.editor.currentDelta = 0;
   cocodojo.editor.local_uid = (((1+Math.random())*0x10000)|0).toString(16).slice(1);
   cocodojo.editor.editorInstance = ace.edit("editorInstance");
+  //cocodojo.editor.editorInstance.setFontSize(14);
   cocodojo.editor.editorInstance.setTheme("ace/theme/monokai");
-  cocodojo.editor.editorInstance.setFontSize(14);
+  
   cocodojo.editor.editorInstance.getSession().setMode("ace/mode/javascript");
 
   cocodojo.editor.update = function(deltas){
