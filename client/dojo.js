@@ -77,12 +77,14 @@ Drawing.prototype.line = function (paper, startX, startY, endX, endY) {
 Drawing.prototype.randomLine = function(paper, pts){
     paper.setStart();
     var path = "";
-    for(var i = 0; i <= pts.length; i++){
+    for(var i = 0; i < pts.length; i++){
         if(i==0) path += "M" + pts[i].x + "," + pts[i].y;
         else{
             path += "L"+pts[i].x + "," + pts[i].y;
         }
-    } 
+    }
+    paper.path(path);
+    return paper.setFinish(); 
 }
 Drawing.prototype.circle = function (paper, centerX, centerY, radius) {
     paper.setStart();
@@ -120,21 +122,29 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
     paper.setStart();
     var r = 15;
     var separation = r;
+    var key = 0;
     for (var level = treeHeight - 1; level >= 0; level--) {
         var temp = [];
         var last_index = 0;
         if (level == treeHeight - 1) {
             for (var i = 0; i < Math.pow(2, treeHeight - 1); i++) {
                 var node = paper.circle(startX + i * r + 2 * i * r, startY + level * 2 * r, r).attr({fill:"white"});
+                var text = paper.text(startX + i * r + 2 * i * r, startY + level * 2 * r, key);
                 temp.push(node);
+                key += 1;
             }
         }
         else {
             for (var i = 0; i < Math.pow(2, level); i++) {
                 var cx = (last_children[last_index].attrs.cx + last_children[last_index + 1].attrs.cx) / 2;
+                var cy = startY + level * 2 * r; 
+                var e = paper.path("M" + last_children[last_index].attrs.cx + "," + last_children[last_index].attrs.cy + "L" + cx + "," + cy);
+                e = paper.path("M" + last_children[last_index + 1].attrs.cx + "," + last_children[last_index +1].attrs.cy + "L" + cx + "," + cy);
                 last_index += 2;
-                var node = paper.circle(cx, startY + level * 2 * r, r).attr({fill:"white"});
+                var node = paper.circle(cx, cy, r).attr({fill:"white"});
+                var text = paper.text(cx, startY + level * 2 * r, key);
                 temp.push(node);
+                key += 1;
             }
         }
         last_children = temp;
@@ -154,7 +164,7 @@ Drawing.prototype.remove = function () {
 Template.canvas.rendered = function () {
 
     var width = 1000;
-    var height = 1000;
+    var height = 500;
     var dataRef = new Firebase('https://sean-firebase.firebaseio.com/');
     var paper = Raphael(document.getElementById("canvas"), width, height);
     var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
@@ -192,7 +202,7 @@ Template.canvas.rendered = function () {
             y -= paper.canvas.offsetTop;
             line = {x:x, y:y};
         }, function (x, y, event) {
-            
+
             var newPushRef = dataRef.push();
             newPushRef.set(line.element.simplify());
         });
@@ -218,29 +228,29 @@ Template.canvas.rendered = function () {
     };
     var circle = null;
     $("#circleButton").click(function () {
-      var handler = function (dx, dy, x, y, event) {
-        x -= paper.canvas.offsetLeft;
-        y -= paper.canvas.offsetTop;
-        var r = Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
-        if (!circle.hasOwnProperty("element")) {
-          circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]);
-        }
-        else {
-          circle.element.updateAttrs("r", r);
-        }
-      };
-      background.drag(handler, function (x, y) {
-        //drag start
-        x -= paper.canvas.offsetLeft;
-        y -= paper.canvas.offsetTop;
-        circle = {x:x, y:y};
-      }, function () {
-        //drag end
-        var newPushRef = dataRef.push();
-        newPushRef.set(circle.element.simplify());
-        circle = null;
-        background.undrag(handler);
-      });
+        var handler = function (dx, dy, x, y, event) {
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            var r = Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
+            if (!circle.hasOwnProperty("element")) {
+                circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]);
+            }
+            else {
+                circle.element.updateAttrs("r", r);
+            }
+        };
+        background.drag(handler, function (x, y) {
+            //drag start
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            circle = {x:x, y:y};
+        }, function () {
+            //drag end
+            var newPushRef = dataRef.push();
+            newPushRef.set(circle.element.simplify());
+            circle = null;
+            background.undrag(handler);
+        });
     });
     var square = null;
     $("#squareButton").click(function () {
@@ -286,17 +296,64 @@ Template.canvas.rendered = function () {
         };
         background.click(handler);
     });
+    var randomLine = null; 
+    $("#textButton").click(function(event){
+        var handler = function(dx,dy,x,y,event){
+            if(!randomLine.hasOwnProperty("element")){
+                randomLine.element = new Drawing("randomLine", [paper, randomLine.pts]); 
+            }
+            else{
+                x -= paper.canvas.offsetLeft;
+                y -= paper.canvas.offsetTop;
+                randomLine.pts.push({"x":x, "y":y}); 
+                var path = "";
+                for(var i=0;i<randomLine.pts.length; i++){
+                    if(i==0){
+                        path += "M" +randomLine.pts[i].x + "," + randomLine.pts[i].y;
+                    }
+                    else{
+                        path += "L" +randomLine.pts[i].x + "," + randomLine.pts[i].y;
+                    }
+                }
+                randomLine.element.updateAttrs("path", path);
+            }
+        };
+        console.log(background);
+        background.drag(handler, function(x,y, event){
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            randomLine = {pts: [{"x":x, "y":y}]};
 
-  $("#trashButton").click(function (event) {
-    paper.clear();
-    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
-    dataRef.remove();
-  });
+        },function(x,y,event){
+            var newPushRef = dataRef.push();
+            newPushRef.set(randomLine.element.simplify());
+            background.undrag(handler);
+            randomLine = null;
 
-  dataRef.on('child_removed', function() {
-    paper.clear();
-    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
-  });
+        });
+    });
+    $("#treeButton").click(function (event) {
+        var element = null; 
+        var handler = function(event, x, y){
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            element = new Drawing("binaryTree", [paper, x, y, 4]); 
+        var newPushRef = dataRef.push();
+        newPushRef.set(element.simplify());
+            background.unclick(handler);
+        };
+        background.click(handler);
+    });
+    $("#trashButton").click(function (event) {
+        paper.clear();
+        background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
+        dataRef.remove();
+    });
+
+    dataRef.on('child_removed', function() {
+        paper.clear();
+        background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
+    });
 
 }
 var CocoDojoRouter = Backbone.Router.extend({
