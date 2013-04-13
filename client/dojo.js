@@ -117,15 +117,15 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
   }
   return paper.setFinish();
 }
-Drawing.prototype.updateAttrs = function(attrs){
-    this.element.attr(attrs);
+Drawing.prototype.updateAttrs = function(){
+    this.element.attr.apply(this.element, arguments);
 }
 
 Drawing.prototype.remove = function(){
     this.element.remove();
     delete this;
 }
-Template.dojo.rendered = function(){
+Template.canvas.rendered = function(){
     var width = 1000;
     var height = 1000;
 
