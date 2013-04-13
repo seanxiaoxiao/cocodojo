@@ -131,16 +131,18 @@ Template.canvas.rendered = function(){
 
     var paper = Raphael(document.getElementById("canvas"), width, height);
     var background = paper.rect(0,0, width, height).attr({fill: "white", stroke: "white"});
+
+    /*
     var drawing = new Drawing("line", [paper,10, 20, 30, 40]);
     var drawing = new Drawing("rectangle", [paper,10, 10, 100, 200]);
     var drawing = new Drawing("text", [paper,10, 10, "Helllo, world!"]); 
     var obj = new Drawing("oneDimensionArray", [paper, 10, 20, [1,2,3, 4, 5]]);
-
     var drawing = new Drawing("circle", [paper,70, 70, 50]);
     var rectangle = new Drawing("rectangle", [paper, 20, 20, 40, 50]);
     var binaryTree = new Drawing("binaryTree", [paper, 100, 20, 4]);
-    
-    var isDrawLine = false;
+    */
+    var graphs = [];
+
     var line = null;
     $("#lineButton").click(function(event){
         line = null;
@@ -149,9 +151,13 @@ Template.canvas.rendered = function(){
             y -= paper.canvas.offsetTop;
             if(!line.hasOwnProperty("element")){
                 line.element = new Drawing("line", [paper, line.x, line.y, x, y]);
+                line.element.codeSessionId = Session.get("codeSessionId");
+                SessionGraph.insert({graph: line.element});
             }
             else{
                 line.element.updateAttrs("path", "M" + line.x + "," + line.y + "L" + x + "," + y);  
+                //CodeSession.update({_id: Session.get("codeSessionId")}, {"$set": {graphs: line.element }});
+                console.log(line.element);
             }
         }, function(x, y , event){
             //drag Start
@@ -163,21 +169,22 @@ Template.canvas.rendered = function(){
         });
 
     });
+    
     var deleteHandler = function(event){
         paper.forEach(function(el2){
             el2.unclick(deleteHandler);
-            el2.unhover(highlighter, highlightRemover);
+            el2.unhover(highlightHandler, unHighlightHandler);
         });
         this.data("mother").element.g.remove();
         this.data("mother").remove();
     };
-    var highlighter = function(){
+    var highlightHandler = function(){
         this.data("mother").element.g = this.data("mother").element.glow({
             color: "#0FF",
             width: 100
         });
     };
-    var highlightRemover = function(){
+    var unHighlightHandler = function(){
         this.data("mother").element.g.remove();
     }
     $("#deleteButton").click(function(event){
@@ -185,7 +192,7 @@ Template.canvas.rendered = function(){
             //add click listener on every object; 
             if(el == this) return;
             el.click(deleteHandler);
-            el.hover(highlighter, highlightRemover, el, el);
+            el.hover(highlightHandler, unHighlightHandler, el, el);
         }, background);
     });
 }
