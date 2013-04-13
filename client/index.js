@@ -14,5 +14,10 @@ if (Meteor.isClient) {
     });
   });
 
+  Template.dojo.rendered = function() {
+    $(".toggle").each(function(index, toggle) {
+        toggleHandler(toggle);
+    });
+  }
 
 }
