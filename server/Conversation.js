@@ -6,4 +6,3 @@
  * To change this template use File | Settings | File Templates.
  */
 
-Conversation = new Meteor.Collection("Conversations");
