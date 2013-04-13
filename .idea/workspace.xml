@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Conversation.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.meteor/release" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/conversation.html" afterPath="$PROJECT_DIR$/client/conversation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/conversation.js" afterPath="$PROJECT_DIR$/client/conversation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.html" afterPath="$PROJECT_DIR$/client/editor.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.js" afterPath="$PROJECT_DIR$/client/editor.js" />
     </list>
     <ignored path="cmu_hackathon.iws" />
@@ -36,26 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="editor.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.12254902">
+            <state line="5" column="11" selection-start="142" selection-end="142" vertical-scroll-proportion="-3.125">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conversation.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/conversation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="934" selection-end="934" vertical-scroll-proportion="-10.192307">
-              <folding>
-                <marker date="1365871602000" expanded="true" signature="648:866" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="1579:1585" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="1108:1287" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="1358:1583" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="1376:1536" placeholder="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -63,24 +43,37 @@
       <file leaf-file-name="dojo.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/dojo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="252" column="3" selection-start="8677" selection-end="8677" vertical-scroll-proportion="0.0">
+            <state line="225" column="25" selection-start="7687" selection-end="7706" vertical-scroll-proportion="14.923077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="editor.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="27" selection-start="3728" selection-end="3728" vertical-scroll-proportion="0.0">
+            <state line="106" column="6" selection-start="2993" selection-end="2993" vertical-scroll-proportion="-0.12266112">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conversation.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/conversation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="207" selection-end="207" vertical-scroll-proportion="-3.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template.conversation.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/template.conversation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="131" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1365871602000" expanded="true" signature="1946:2347" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="2020:2341" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="2122:2284" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="2192:2255" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="2438:2666" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="2508:2662" placeholder="{...}" />
-                <marker date="1365871602000" expanded="true" signature="2607:2658" placeholder="{...}" />
+                <marker date="1365871718000" expanded="false" signature="199:251" placeholder="..." />
+                <marker date="1365871718000" expanded="false" signature="375:427" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -142,15 +135,15 @@
         <option value="$PROJECT_DIR$/server/Conversation.js" />
         <option value="$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/dojo.js" />
         <option value="$PROJECT_DIR$/server/CodeSession.js" />
-        <option value="$PROJECT_DIR$/client/conversation.html" />
-        <option value="$PROJECT_DIR$/client/conversation.js" />
         <option value="$PROJECT_DIR$/client/index.js" />
         <option value="$PROJECT_DIR$/client/css/editor.css" />
-        <option value="$PROJECT_DIR$/client/editor.js" />
         <option value="$PROJECT_DIR$/client/dojo.html" />
         <option value="$PROJECT_DIR$/client/cocodojo.html" />
         <option value="$PROJECT_DIR$/client/dojo.js" />
         <option value="$PROJECT_DIR$/client/editor.html" />
+        <option value="$PROJECT_DIR$/client/conversation.js" />
+        <option value="$PROJECT_DIR$/client/editor.js" />
+        <option value="$PROJECT_DIR$/client/conversation.html" />
       </list>
     </option>
   </component>
@@ -245,6 +238,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmu_hackathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmu_hackathon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".meteor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -297,9 +308,9 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5591241" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22627737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982357" sideWeight="0.44087592" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982357" sideWeight="0.77372265" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -366,13 +377,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/conversation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="38" selection-start="238" selection-end="245" vertical-scroll-proportion="-3.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/CodeSession.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="162" selection-end="370" vertical-scroll-proportion="0.20654045">
@@ -387,13 +391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/drawing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/css/editor.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="9" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
@@ -401,38 +398,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="27" selection-start="3728" selection-end="3728" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1365871602000" expanded="true" signature="1946:2347" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="2020:2341" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="2122:2284" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="2192:2255" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="2438:2666" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="2508:2662" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="2607:2658" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="0" selection-start="443" selection-end="443" vertical-scroll-proportion="-8.076923">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/conversation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="934" selection-end="934" vertical-scroll-proportion="-10.192307">
-          <folding>
-            <marker date="1365871602000" expanded="true" signature="648:866" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="1579:1585" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="1108:1287" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="1358:1583" placeholder="{...}" />
-            <marker date="1365871602000" expanded="true" signature="1376:1536" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -457,16 +426,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/dojo.js">
+    <entry file="file://$PROJECT_DIR$/client/drawing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="3" selection-start="8677" selection-end="8677" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/conversation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="522" selection-end="522" vertical-scroll-proportion="0.40983605">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.12254902">
+        <state line="5" column="11" selection-start="142" selection-end="142" vertical-scroll-proportion="-3.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/dojo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="225" column="25" selection-start="7687" selection-end="7706" vertical-scroll-proportion="14.923077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/conversation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="207" selection-end="207" vertical-scroll-proportion="-3.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/template.conversation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="131" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1365871718000" expanded="false" signature="199:251" placeholder="..." />
+            <marker date="1365871718000" expanded="false" signature="375:427" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="6" selection-start="2993" selection-end="2993" vertical-scroll-proportion="-0.12266112">
           <folding />
         </state>
       </provider>
