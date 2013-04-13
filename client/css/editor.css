@@ -1,5 +1,5 @@
 #editorContainer { position: relative; }
-#editorInstance { width: 100%; height: 600px;}
+#editorInstance { width: 100%; height: 500px;}
 #editorInstance .progress {margin-top: 10px;}
 #editorTools { 
 	display: inline-block;
@@ -14,6 +14,7 @@
 	opacity: 0;
 	transition: opacity 300ms ease;
 	margin : 0.2em; border-radius: 3px;
+	width: 7.8em;
 }
 #editorComment.commentOn {
 	opacity: 1;
