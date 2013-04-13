@@ -130,19 +130,19 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
   }
   return paper.setFinish();
 }
-Drawing.prototype.updateAttrs = function(key, value){
-    this.element.attr(key, value);
-    this.attrs[key] = value;
-   return this; 
+Drawing.prototype.updateAttrs = function (key, value) {
+  this.element.attr(key, value);
+  this.attrs[key] = value;
+  return this;
 }
 Drawing.prototype.remove = function () {
   this.element.remove();
   delete this;
 }
 
-template.canvas.rendered = function () {
+Template.canvas.rendered = function () {
   var dataref = new firebase('https://sean-firebase.firebaseio.com/');
-  var drawgraph = function(snapshot) {
+  var drawgraph = function (snapshot) {
     var graphobj = snapshot.val();
     console.log(graphobj);
   };
@@ -158,7 +158,6 @@ template.canvas.rendered = function () {
   var graphs = [];
 
   var line = null;
-  SessionGraph = new Meteor.Collection("SessionGraphs");
   var lastDate = new Date();
   $("#lineButton").click(function (event) {
     line = null;
@@ -182,111 +181,111 @@ template.canvas.rendered = function () {
       newPushRef.set(line.element.simplify());
     });
 
-    var deleteHandler = function(event){
-        paper.forEach(function(el2){
-            el2.unclick(deleteHandler);
-            el2.unhover(highlightHandler, unHighlightHandler);
-        });
-        console.log(this.data("mother"));
-        this.data("mother").element.g.remove();
-        this.data("mother").remove();
+    var deleteHandler = function (event) {
+      paper.forEach(function (el2) {
+        el2.unclick(deleteHandler);
+        el2.unhover(highlightHandler, unHighlightHandler);
+      });
+      console.log(this.data("mother"));
+      this.data("mother").element.g.remove();
+      this.data("mother").remove();
     };
 
-    var highlightHandler = function(){
-        this.data("mother").element.g = this.data("mother").element.glow({
-            color: "#0FF",
-            width: 100
-        });
+    var highlightHandler = function () {
+      this.data("mother").element.g = this.data("mother").element.glow({
+        color:"#0FF",
+        width:100
+      });
     };
-    var unHighlightHandler = function(){
-        this.data("mother").element.g.remove();
+    var unHighlightHandler = function () {
+      this.data("mother").element.g.remove();
     }
     var circle = null;
-    $("#circleButton").click(function(){
-        var handler = function(dx,dy, x, y, event){
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop; 
-            var r = Math.sqrt(Math.pow(x-circle.x,2) + Math.pow(y-circle.y,2));
-            if(!circle.hasOwnProperty("element")){
-                circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]); 
-            }
-            else{
-                circle.element.updateAttrs("r", r);
-            }
-        };
-        background.drag(handler, function(x, y){
-            //drag start
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop; 
-            circle = {x:x , y:y};
-        },function(){
-            //drag end
-            circle = null;
-            background.undrag(handler);
-        });
+    $("#circleButton").click(function () {
+      var handler = function (dx, dy, x, y, event) {
+        x -= paper.canvas.offsetLeft;
+        y -= paper.canvas.offsetTop;
+        var r = Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
+        if (!circle.hasOwnProperty("element")) {
+          circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]);
+        }
+        else {
+          circle.element.updateAttrs("r", r);
+        }
+      };
+      background.drag(handler, function (x, y) {
+        //drag start
+        x -= paper.canvas.offsetLeft;
+        y -= paper.canvas.offsetTop;
+        circle = {x:x, y:y};
+      }, function () {
+        //drag end
+        circle = null;
+        background.undrag(handler);
+      });
     });
     var square = null;
-    $("#squareButton").click(function(){
-        var handler = function(dx, dy, x, y, event){
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop; 
-            if(!square.hasOwnProperty("element")){
-                square.element = new Drawing("rectangle", [paper, Math.min(x,square.x), Math.min(y, square.y), Math.abs(x-square.x), Math.abs(y-square.y)]);
-            }
-            else{
-                if(x-square.x < 0){
-                    square.element.updateAttrs("x", x);
-                }
-                if(y-square.y < 0){
-                    square.element.updateAttrs("y", y);
-                }
-                square.element.updateAttrs("width", Math.abs(x-square.x)).updateAttrs("height",  Math.abs(y-square.y));
-            }
+    $("#squareButton").click(function () {
+      var handler = function (dx, dy, x, y, event) {
+        x -= paper.canvas.offsetLeft;
+        y -= paper.canvas.offsetTop;
+        if (!square.hasOwnProperty("element")) {
+          square.element = new Drawing("rectangle", [paper, Math.min(x, square.x), Math.min(y, square.y), Math.abs(x - square.x), Math.abs(y - square.y)]);
         }
-        background.drag(handler, function(x, y, event){
-            //Drag Start
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop;
-            square = {x: x, y:y};
+        else {
+          if (x - square.x < 0) {
+            square.element.updateAttrs("x", x);
+          }
+          if (y - square.y < 0) {
+            square.element.updateAttrs("y", y);
+          }
+          square.element.updateAttrs("width", Math.abs(x - square.x)).updateAttrs("height", Math.abs(y - square.y));
+        }
+      };
+      background.drag(handler, function (x, y, event) {
+        //Drag Start
+        x -= paper.canvas.offsetLeft;
+        y -= paper.canvas.offsetTop;
+        square = {x:x, y:y};
 
-        }, function(x,y,event){
-            //Drag End
-            background.undrag(handler);
-            square = null;
-        }, background, background);
+      }, function (x, y, event) {
+        //Drag End
+        background.undrag(handler);
+        square = null;
+      }, background, background);
     });
-    oneDimensionArray = null;
-    $("#arrayButton").click(function(event){
-        var handler = function(event, x, y){
-            x -= paper.canvas.offsetLeft;
-            y -= paper.canvas.offsetTop;
-            var element = new Drawing("oneDimensionArray", [paper, x, y, [1,2,3,4,5]]);    
-            background.unclick(handler);
-        };
-        background.click(handler);
-    });
+  });
+  oneDimensionArray = null;
+  $("#arrayButton").click(function (event) {
+    var handler = function (event, x, y) {
+      x -= paper.canvas.offsetLeft;
+      y -= paper.canvas.offsetTop;
+      var element = new Drawing("oneDimensionArray", [paper, x, y, [1, 2, 3, 4, 5]]);
+      background.unclick(handler);
+    };
+    background.click(handler);
+  });
 
-    $("#trashButton").click(function(event){
-        paper.forEach(function(el){
-            //add click listener on every object; 
-            if(el == this) return;
-            el.click(deleteHandler);
-            el.hover(highlightHandler, unHighlightHandler, el, el);
-        }, background);
+  $("#trashButton").click(function (event) {
+    paper.forEach(function (el) {
+      //add click listener on every object;
+      if (el == this) return;
+      el.click(deleteHandler);
+      el.hover(highlightHandler, unHighlightHandler, el, el);
+    }, background);
   });
 }
 var CocoDojoRouter = Backbone.Router.extend({
 
-
-    routes: {
-                ":session_id": "dojo"
-            },
-    dojo: function (codeSessionId) {
-              Session.set("codeSessionId", codeSessionId);
-          },
-    setCodeSession: function(codeSessionId) {
-                        this.navigate(codeSessionId, true);
-                    }
+  routes:{
+    ":session_id":"dojo"
+  },
+  dojo:function (codeSessionId) {
+    Session.set("codeSessionId", codeSessionId);
+  },
+  setCodeSession:function (codeSessionId) {
+    this.navigate(codeSessionId, true);
+  }
 });
 Router = new CocoDojoRouter;
 
