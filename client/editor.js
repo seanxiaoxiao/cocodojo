@@ -60,4 +60,52 @@ Template.editor.rendered = function() {
       setTimeout(function(){ cocodojo.editor.disableInput = false; }, 50);
     }
   });
+
+  $('#editorInstance').on('ondragover',function() {
+    e.stopPropagation();
+    return false;
+  });
+  $('#editorInstance').on('ondragend',function() {
+    e.stopPropagation();
+    return false;
+  });
+  $('#editorInstance').on('ondrop',function(e) {
+    if (e.preventDefault) e.preventDefault();
+    e.stopPropagation();
+    var file = e.dataTransfer.files[0], reader = new FileReader();
+    reader.onload = function (event) {
+      console.log(event.target);
+    };
+    return false;
+  });
+
+  filepicker.setKey("A5FhMuKiRViDaQtnHUotPz");
+  filepicker.makeDropPane($('#exampleDropPane')[0], {
+    multiple: true,
+    dragEnter: function() {
+      $("#exampleDropPane").html("Drop to upload").css({
+        'backgroundColor': "#E0E0E0",
+        'border': "1px solid #000"
+      });
+    },
+    dragLeave: function() {
+      $("#exampleDropPane").html("Drop files here").css({
+        'backgroundColor': "#F6F6F6",
+        'border': "1px dashed #666"
+      });
+    },
+    onSuccess: function(fpfiles) {
+      $("#exampleDropPane").text("Done, see result below");
+      filepicker.read(fpfiles[0], function(data){
+        console.log(fpfiles[0].filename);
+        cocodojo.editor.editorInstance.setValue(data);
+      });
+    },
+    onError: function(type, message) {
+      $("#localDropResult").text('('+type+') '+ message);
+    },
+    onProgress: function(percentage) {
+      $("#exampleDropPane").text("Uploading ("+percentage+"%)");
+    }
+  });
 };
