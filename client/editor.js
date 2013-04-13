@@ -185,12 +185,14 @@ Template.editor.rendered = function() {
 //      $("#exampleDropPane").text("Done, see result below");
       filepicker.read(fpfiles[0], function(data){
         var extHash = {
-          'js' : 'javascript',
           'c' : 'c_cpp',
           'cpp' : 'c_cpp',
+          'cs' : 'csharp',
+          'css' : 'css',
+          'html' : 'html',
           'java' : 'java',
-          'ruby' : 'ruby',
-          'html' : 'html'
+          'js' : 'javascript',
+          'ruby' : 'ruby'
         };
         var extName = fpfiles[0].filename.split('.').pop();
         cocodojo.editor.editorInstance.getSession().setMode("ace/mode/"+extHash[extName]);
