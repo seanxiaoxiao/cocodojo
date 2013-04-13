@@ -21,11 +21,11 @@ Template.editor.rendered = function() {
   cocodojo.editor.updateDue = false;
   cocodojo.editor.disableInput = false;
   cocodojo.editor.currentDelta = 0;
+  cocodojo.editor.localComments = {};
+  cocodojo.editor.commentsCount = 0;
   cocodojo.editor.local_uid = (((1+Math.random())*0x10000)|0).toString(16).slice(1);
   cocodojo.editor.editorInstance = ace.edit("editorInstance");
-  //cocodojo.editor.editorInstance.setFontSize(14);
   cocodojo.editor.editorInstance.setTheme("ace/theme/monokai");
-  
   cocodojo.editor.editorInstance.getSession().setMode("ace/mode/javascript");
 
   cocodojo.editor.update = function(deltas){
@@ -46,11 +46,23 @@ Template.editor.rendered = function() {
     cocodojo.editor.updateDue = false;
   }
 
+  cocodojo.editor.addComment = function(comments){
+    if(comments === undefined){ return false; }
+    var commentsLength = comments.length;
+    for(var i=cocodojo.editor.commentsCount; i<commentsLength; ++i){
+      if(comments[i].sender_uid !== cocodojo.editor.local_uid){
+        cocodojo.editor.localComments[comments[i].line] = comments[i].text;
+      }
+    }
+    cocodojo.editor.commentsCount = commentsLength;
+  }
+
   var codeSession;
   setTimeout( function(){
     codeSession = new Template.editor.codeSession();
     cocodojo.editor.update(codeSession.Deltas);
-  }, 1000);
+    cocodojo.editor.addComment(codeSession.Comments);
+  }, 1200);
   
 
   // Manual Manipulation
@@ -73,9 +85,10 @@ Template.editor.rendered = function() {
     mongoQuery.observe({
       changed : function(newDoc, oldIndex, oldDoc) {
         cocodojo.editor.update(newDoc.Deltas);
+        cocodojo.editor.addComment(newDoc.Comments);
       }
     });
-  }, 1000);
+  }, 1200);
 
 
 
@@ -96,6 +109,47 @@ Template.editor.rendered = function() {
   $('#editorTheme').on('change', function(e){
     cocodojo.editor.editorInstance.setTheme("ace/theme/"+$(this).val());
   });
+
+  $('#editorInstance').on('mousedown', '.ace_gutter-cell', function(e){
+    if(e.which == 3){
+      var userComment = window.prompt("Please input your comment","");
+      cocodojo.editor.localComments[$(this).html()] = userComment;
+      $(this).css('background-color', 'khaki');
+      if($.trim(userComment) != ''){
+      CodeSession.update(
+        {_id: Session.get("codeSessionId")}, 
+          { $push:
+            {
+              Comments: { line: $(this).html(), text: userComment, sender_uid: cocodojo.editor.local_uid }
+            }
+          }
+        );
+      }
+    }
+  });
+
+  $('#editorInstance').on('contextmenu', '.ace_gutter-cell', function(e){
+    return false;
+  });
+
+  $('#editorInstance').on('mouseover', '.ace_gutter-cell', function(e){
+    if(cocodojo.editor.localComments.hasOwnProperty($(this).html())){
+      $('#editorComment').html('line '+$(this).html()+': '+cocodojo.editor.localComments[$(this).html() ]);
+      $('#editorComment').addClass('commentOn');
+    }
+  }).on('mouseout', '.ace_gutter-cell', function(){
+      $('#editorComment').removeClass('commentOn');
+  });
+
+  $('#editorInstance').on("DOMNodeInserted", function(e){
+      var targetElements = $(e.target).find('.ace_gutter-cell');
+      for(var i=0; i<targetElements.length; ++i){
+        if(cocodojo.editor.localComments.hasOwnProperty($(targetElements[i]).html())){
+          $(targetElements[i]).css('background-color', 'khaki');
+        }
+      }
+  });
+
 
 
   // Drag and Drop File function

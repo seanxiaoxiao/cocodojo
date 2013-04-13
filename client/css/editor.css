@@ -8,3 +8,13 @@
 	opacity: 1;
 }
 #editorTools select { display: inline-block; visibility: visible; top: 0; margin: 0.2em; width: 10em;}
+
+#editorComment {
+	background-color: khaki;
+	opacity: 0;
+	transition: opacity 300ms ease;
+	margin : 0.2em; border-radius: 3px;
+}
+#editorComment.commentOn {
+	opacity: 1;
+}
