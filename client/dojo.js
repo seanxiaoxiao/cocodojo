@@ -133,7 +133,8 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
 }
 Drawing.prototype.updateAttrs = function(key, value){
     this.element.attr(key, value);
-    this.attrs[key] = value; 
+    this.attrs[key] = value;
+   return this; 
 }
 Drawing.prototype.remove = function(){
     this.element.remove();
@@ -171,7 +172,6 @@ Template.canvas.rendered = function(){
             }
             else{
                 line.element.updateAttrs("path", "M" + line.x + "," + line.y + "L" + x + "," + y);
-                /* console.log(new Date() - lastDate);
               console.log(new Date() - lastDate > 5000);
                 if (new Date() - lastDate > 5000) {
                   lastDate = new Date();
@@ -197,6 +197,7 @@ Template.canvas.rendered = function(){
             el2.unclick(deleteHandler);
             el2.unhover(highlightHandler, unHighlightHandler);
         });
+        console.log(this.data("mother"));
         this.data("mother").element.g.remove();
         this.data("mother").remove();
     };
@@ -209,7 +210,72 @@ Template.canvas.rendered = function(){
     var unHighlightHandler = function(){
         this.data("mother").element.g.remove();
     }
-    $("#deleteButton").click(function(event){
+    var circle = null;
+    $("#circleButton").click(function(){
+        var handler = function(dx,dy, x, y, event){
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop; 
+            var r = Math.sqrt(Math.pow(x-circle.x,2) + Math.pow(y-circle.y,2));
+            if(!circle.hasOwnProperty("element")){
+                circle.element = new Drawing("circle", [paper, circle.x, circle.y, r]); 
+            }
+            else{
+                circle.element.updateAttrs("r", r);
+            }
+        };
+        background.drag(handler, function(x, y){
+            //drag start
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop; 
+            circle = {x:x , y:y};
+        },function(){
+            //drag end
+            circle = null;
+            background.undrag(handler);
+        });
+    });
+    var square = null;
+    $("#squareButton").click(function(){
+        var handler = function(dx, dy, x, y, event){
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop; 
+            if(!square.hasOwnProperty("element")){
+                square.element = new Drawing("rectangle", [paper, Math.min(x,square.x), Math.min(y, square.y), Math.abs(x-square.x), Math.abs(y-square.y)]);
+            }
+            else{
+                if(x-square.x < 0){
+                    square.element.updateAttrs("x", x);
+                }
+                if(y-square.y < 0){
+                    square.element.updateAttrs("y", y);
+                }
+                square.element.updateAttrs("width", Math.abs(x-square.x)).updateAttrs("height",  Math.abs(y-square.y));
+            }
+        }
+        background.drag(handler, function(x, y, event){
+            //Drag Start
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            square = {x: x, y:y};
+
+        }, function(x,y,event){
+            //Drag End
+            background.undrag(handler);
+            square = null;
+        }, background, background);
+    });
+    oneDimensionArray = null;
+    $("#arrayButton").click(function(event){
+        var handler = function(event, x, y){
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            var element = new Drawing("oneDimensionArray", [paper, x, y, [1,2,3,4,5]]);    
+            background.unclick(handler);
+        };
+        background.click(handler);
+    });
+
+    $("#trashButton").click(function(event){
         paper.forEach(function(el){
             //add click listener on every object; 
             if(el == this) return;
@@ -218,86 +284,86 @@ Template.canvas.rendered = function(){
         }, background);
     });
 
-  /*
-  var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
+    /*
+       var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
 
-  //Create a reference to the pixel data for our drawing.
-  var pixelDataRef = new Firebase('https://sean-firebase.firebaseio.com/');
+    //Create a reference to the pixel data for our drawing.
+    var pixelDataRef = new Firebase('https://sean-firebase.firebaseio.com/');
 
-  // Set up our canvas
-  var myCanvas = document.getElementById('drawing-canvas');
-  var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-  if (myContext == null) {
+    // Set up our canvas
+    var myCanvas = document.getElementById('drawing-canvas');
+    var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
+    if (myContext == null) {
     alert("You must use a browser that supports HTML5 Canvas to run this demo.");
     return;
-  }
+    }
 
-  //Keep track of if the mouse is up or down
-  myCanvas.onmousedown = function () {mouseDown = 1;};
-  myCanvas.onmouseout = myCanvas.onmouseup = function () {
+    //Keep track of if the mouse is up or down
+    myCanvas.onmousedown = function () {mouseDown = 1;};
+    myCanvas.onmouseout = myCanvas.onmouseup = function () {
     mouseDown = 0, lastPoint = null;
-  };
+    };
 
-  //Draw a line from the mouse's last position to its current position
-  var drawLineOnMouseMove = function(e) {
+    //Draw a line from the mouse's last position to its current position
+    var drawLineOnMouseMove = function(e) {
     if (!mouseDown) return;
 
-    // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
-    var offset = $('canvas').offset();
-    var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
-      y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
-    var x0 = (lastPoint == null) ? x1 : lastPoint[0];
-    var y0 = (lastPoint == null) ? y1 : lastPoint[1];
-    var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
-    var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
-    while (true) {
-      //write the pixel into Firebase, or if we are drawing white, remove the pixel
-      pixelDataRef.child(x0 + ":" + y0).set(currentColor === "fff" ? null : currentColor);
+// Bresenham's line algorithm. We use this to ensure smooth lines are drawn
+var offset = $('canvas').offset();
+var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
+y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
+var x0 = (lastPoint == null) ? x1 : lastPoint[0];
+var y0 = (lastPoint == null) ? y1 : lastPoint[1];
+var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
+while (true) {
+//write the pixel into Firebase, or if we are drawing white, remove the pixel
+pixelDataRef.child(x0 + ":" + y0).set(currentColor === "fff" ? null : currentColor);
 
-      if (x0 == x1 && y0 == y1) break;
-      var e2 = 2 * err;
-      if (e2 > -dy) {
-        err = err - dy;
-        x0 = x0 + sx;
-      }
-      if (e2 < dx) {
-        err = err + dx;
-        y0 = y0 + sy;
-      }
-    }
-    lastPoint = [x1, y1];
-  }
-  $(myCanvas).mousemove(drawLineOnMouseMove);
-  $(myCanvas).mousedown(drawLineOnMouseMove);
+if (x0 == x1 && y0 == y1) break;
+var e2 = 2 * err;
+if (e2 > -dy) {
+err = err - dy;
+x0 = x0 + sx;
+}
+if (e2 < dx) {
+err = err + dx;
+y0 = y0 + sy;
+}
+}
+lastPoint = [x1, y1];
+}
+$(myCanvas).mousemove(drawLineOnMouseMove);
+$(myCanvas).mousedown(drawLineOnMouseMove);
 
-  // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
-  // Note that child_added events will be fired for initial pixel data as well.
-  var drawPixel = function(snapshot) {
-    var coords = snapshot.name().split(":");
-    myContext.fillStyle = "#" + snapshot.val();
-    myContext.fillRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
-  }
-  var clearPixel = function(snapshot) {
-    var coords = snapshot.name().split(":");
-    myContext.clearRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
-  }
-  pixelDataRef.on('child_added', drawPixel);
-  pixelDataRef.on('child_changed', drawPixel);
-  pixelDataRef.on('child_removed', clearPixel);
+// Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
+// Note that child_added events will be fired for initial pixel data as well.
+var drawPixel = function(snapshot) {
+var coords = snapshot.name().split(":");
+myContext.fillStyle = "#" + snapshot.val();
+myContext.fillRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
+}
+var clearPixel = function(snapshot) {
+var coords = snapshot.name().split(":");
+myContext.clearRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
+}
+pixelDataRef.on('child_added', drawPixel);
+pixelDataRef.on('child_changed', drawPixel);
+pixelDataRef.on('child_removed', clearPixel);
 */
- }
+}
 
 
 var CocoDojoRouter = Backbone.Router.extend({
-  routes: {
-    ":session_id": "dojo"
-  },
-  dojo: function (codeSessionId) {
-    Session.set("codeSessionId", codeSessionId);
-  },
-  setCodeSession: function(codeSessionId) {
-    this.navigate(codeSessionId, true);
-  }
+    routes: {
+                ":session_id": "dojo"
+            },
+    dojo: function (codeSessionId) {
+              Session.set("codeSessionId", codeSessionId);
+          },
+    setCodeSession: function(codeSessionId) {
+                        this.navigate(codeSessionId, true);
+                    }
 });
 
 Router = new CocoDojoRouter;
