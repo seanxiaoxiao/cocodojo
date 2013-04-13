@@ -122,21 +122,29 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
     paper.setStart();
     var r = 15;
     var separation = r;
+    var key = 0;
     for (var level = treeHeight - 1; level >= 0; level--) {
         var temp = [];
         var last_index = 0;
         if (level == treeHeight - 1) {
             for (var i = 0; i < Math.pow(2, treeHeight - 1); i++) {
                 var node = paper.circle(startX + i * r + 2 * i * r, startY + level * 2 * r, r).attr({fill:"white"});
+                var text = paper.text(startX + i * r + 2 * i * r, startY + level * 2 * r, r, i);
                 temp.push(node);
+                key += 1;
             }
         }
         else {
             for (var i = 0; i < Math.pow(2, level); i++) {
                 var cx = (last_children[last_index].attrs.cx + last_children[last_index + 1].attrs.cx) / 2;
+                var cy = startY + level * 2 * r; 
+                paper.path("M" + last_children[last_index].attrs.cx + "," + last_children[last_index].attrs.cy + "L" + cx + "," + cy);
+                paper.path("M" + last_children[last_index + 1].attrs.cx + "," + last_children[last_index +1].attrs.cy + "L" + cx + "," + cy);
                 last_index += 2;
-                var node = paper.circle(cx, startY + level * 2 * r, r).attr({fill:"white"});
+                var node = paper.circle(cx, cy, r).attr({fill:"white"});
+                var text = paper.text(cx, startY + level * 2 * r, key);
                 temp.push(node);
+                key += 1;
             }
         }
         last_children = temp;
@@ -327,6 +335,18 @@ Template.canvas.rendered = function () {
             randomLine = null;
 
         });
+    });
+    $("#treeButton").click(function (event) {
+       
+        var handler = function(event, x, y){
+            x -= paper.canvas.offsetLeft;
+            y -= paper.canvas.offsetTop;
+            var element = new Drawing("binaryTree", [paper, x, y, 4]); 
+            background.unclick(handler);
+        };
+        background.click(handler);
+        var newPushRef = dataRef.push();
+        newPushRef.set(element.simplify());
     });
     $("#trashButton").click(function (event) {
         paper.clear();
