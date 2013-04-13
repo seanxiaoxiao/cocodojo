@@ -1,7 +1,6 @@
 
 if (Meteor.isClient) {
   CodeSession = new Meteor.Collection("CodeSessions");
-  SessionGraph = new Meteor.Collection("SessionGraphs");
   cocodojo = {};
 
   Meteor.startup(function () {
