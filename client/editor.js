@@ -54,6 +54,12 @@ Template.editor.rendered = function() {
         cocodojo.editor.localComments[comments[i].line] = comments[i].text;
       }
     }
+    var targetElements = $('.ace_gutter-cell');
+    for(var j=0; j<targetElements.length; ++j){
+      if(cocodojo.editor.localComments.hasOwnProperty($(targetElements[j]).html())){
+        $(targetElements[j]).css('background-color', 'khaki');
+      }
+    }
     cocodojo.editor.commentsCount = commentsLength;
   }
 
