@@ -8,15 +8,6 @@
 
 Template.conversations.all = function() {
   var codeSessionId = Session.get("codeSessionId");
-<<<<<<< HEAD
-  var allConversation = Conversation.find().fetch();
-  var result = "";
-  for (var i = 0; i < allConversation.length; i++) {
-    result += allConversation[i].message + "\n";
-    console.log(result);
-  }
-  return result;
-=======
   var codeSession = CodeSession.findOne({_id: codeSessionId});
   if (codeSession && codeSession.messages) {
     var result = "";
@@ -25,17 +16,10 @@ Template.conversations.all = function() {
     }
     return result;
   }
->>>>>>> 2aa9bd62a06b1ec4ff6b7a053b655604e83d469a
 }
 
 
 Template.conversations.events = {
-<<<<<<< HEAD
-  'click #sendBtn' : function () {
-    var text = $("#message").val();
-    var codeSessionId = Session.get("codeSessionId");
-    var id = Conversation.insert({message: text, codeSessionId: codeSessionId});
-=======
   'click #sendBtn': function() {
     var text = "Anonymous: " + $("#message").val();
     CodeSession.update({_id: Session.get("codeSessionId")}, {"$push": {messages: text}});
@@ -47,7 +31,6 @@ Template.conversations.events = {
       CodeSession.update({_id: Session.get("codeSessionId")}, {"$push": {messages: text}});
       $("#message").val("");
     }
->>>>>>> 2aa9bd62a06b1ec4ff6b7a053b655604e83d469a
   }
 }
 
