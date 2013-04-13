@@ -11,27 +11,24 @@ Template.dojo.codeSession = function() {
 };
 
 var codeSessionHandle = null;
+
 Deps.autorun(function() {
   var codeSessionId = Session.get('codeSessionId');
-  if (codeSessionId)
+  if (codeSessionId) {
     codeSessionHandle = Meteor.subscribe('codeSession', codeSessionId);
-  else
+  }
+  else {
     codeSessionHandle = null;
+  }
 });
 
 var CocoDojoRouter = Backbone.Router.extend({
   routes: {
     ":session_id": "dojo"
   },
-  home: function() {
-    var id = CodeSession.insert({name: "New Dojo"});
-    Session.set("codeSessionId", codeSessionId);
-
-  },
   dojo: function (codeSessionId) {
     Session.set("codeSessionId", codeSessionId);
   },
-
   setCodeSession: function(codeSessionId) {
     this.navigate(codeSessionId, true);
   }
