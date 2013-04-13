@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/conversation.html" afterPath="$PROJECT_DIR$/client/conversation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/editor.css" afterPath="$PROJECT_DIR$/client/css/editor.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.html" afterPath="$PROJECT_DIR$/client/dojo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.js" afterPath="$PROJECT_DIR$/client/dojo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.js" afterPath="$PROJECT_DIR$/client/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.html" afterPath="$PROJECT_DIR$/client/editor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.js" afterPath="$PROJECT_DIR$/client/editor.js" />
     </list>
     <ignored path="cmu_hackathon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +31,7 @@
       <file leaf-file-name="dojo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/dojo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="0" selection-start="4409" selection-end="4409" vertical-scroll-proportion="0.4632207">
+            <state line="226" column="0" selection-start="0" selection-end="6537" vertical-scroll-proportion="0.8113208">
               <folding />
             </state>
           </provider>
@@ -56,8 +60,16 @@
       <file leaf-file-name="editor.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="20" selection-start="121" selection-end="132" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="5" column="0" selection-start="121" selection-end="132" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1365880236000" expanded="true" signature="1745:2209" placeholder="{...}" />
+                <marker date="1365880236000" expanded="true" signature="1802:2158" placeholder="{...}" />
+                <marker date="1365880236000" expanded="true" signature="2293:2393" placeholder="{...}" />
+                <marker date="1365880236000" expanded="true" signature="2305:2345" placeholder="{...}" />
+                <marker date="1365880236000" expanded="true" signature="2334:2346" placeholder="{...}" />
+                <marker date="1365880236000" expanded="true" signature="2638:2776" placeholder="{...}" />
+                <marker date="1365880236000" expanded="true" signature="2644:2732" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,9 +87,7 @@
         <entry file="file://$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/template.conversation.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="131" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1365880197000" expanded="true" signature="185:237" placeholder="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -298,11 +308,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="806" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19416058" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19416058" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982357" sideWeight="0.8058394" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -436,17 +446,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/editor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="20" selection-start="121" selection-end="132" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="5" column="0" selection-start="121" selection-end="132" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1365880236000" expanded="true" signature="1745:2209" placeholder="{...}" />
+            <marker date="1365880236000" expanded="true" signature="1802:2158" placeholder="{...}" />
+            <marker date="1365880236000" expanded="true" signature="2293:2393" placeholder="{...}" />
+            <marker date="1365880236000" expanded="true" signature="2305:2345" placeholder="{...}" />
+            <marker date="1365880236000" expanded="true" signature="2334:2346" placeholder="{...}" />
+            <marker date="1365880236000" expanded="true" signature="2638:2776" placeholder="{...}" />
+            <marker date="1365880236000" expanded="true" signature="2644:2732" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.meteor/local/build/static_cacheable/client/template.conversation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="131" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1365880197000" expanded="true" signature="185:237" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -475,7 +491,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/dojo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="0" selection-start="4409" selection-end="4409" vertical-scroll-proportion="0.4632207">
+        <state line="226" column="0" selection-start="0" selection-end="6537" vertical-scroll-proportion="0.8113208">
           <folding />
         </state>
       </provider>
