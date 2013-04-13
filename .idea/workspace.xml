@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/cocodojo.html" afterPath="$PROJECT_DIR$/client/cocodojo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/flat-ui.css" afterPath="$PROJECT_DIR$/client/css/flat-ui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.html" afterPath="$PROJECT_DIR$/client/dojo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.js" afterPath="$PROJECT_DIR$/client/dojo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.js" afterPath="$PROJECT_DIR$/client/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/custom_radio.js" afterPath="$PROJECT_DIR$/client/js/custom_radio.js" />
     </list>
     <ignored path="cmu_hackathon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +25,7 @@
       <file leaf-file-name="dojo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/dojo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="297" column="3" selection-start="9682" selection-end="9682" vertical-scroll-proportion="0.35714287">
+            <state line="201" column="6" selection-start="6394" selection-end="6394" vertical-scroll-proportion="0.81632656">
               <folding />
             </state>
           </provider>
@@ -493,7 +487,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/dojo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="297" column="3" selection-start="9682" selection-end="9682" vertical-scroll-proportion="0.35714287">
+        <state line="201" column="6" selection-start="6394" selection-end="6394" vertical-scroll-proportion="0.81632656">
           <folding />
         </state>
       </provider>

@@ -174,10 +174,6 @@ Template.canvas.rendered = function () {
 
     dataRef.on('child_added', drawGraph);
 
-
-
-    var graphs = [];
-
     var line = null;
     var lastDate = new Date();
     $("#lineButton").click(function (event) {
