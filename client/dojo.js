@@ -71,6 +71,7 @@ Drawing.prototype.simplify = function () {
 Drawing.prototype.line = function (paper, startX, startY, endX, endY) {
   paper.setStart();
   paper.path("M" + startX + "," + startY + "L" + endX + "," + endY).attr({"stroke-width":3});
+
   return paper.setFinish();
 }
 Drawing.prototype.circle = function (paper, centerX, centerY, radius) {
@@ -141,23 +142,26 @@ Drawing.prototype.remove = function () {
 }
 
 Template.canvas.rendered = function () {
-  var dataref = new firebase('https://sean-firebase.firebaseio.com/');
-  var drawgraph = function (snapshot) {
-    paper.clear();
-    background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
-    var graphobj = snapshot.val();
-    console.log(graphobj);
-    
-    //var drawing = new Drawing(graphobj.type, 
-  
-  };
-  var paper = Raphael(document.getElementById("canvas"), width, height);
-  var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
-
-  dataRef.on('child_added', drawGraph);
 
   var width = 1000;
   var height = 1000;
+  var dataRef = new Firebase('https://sean-firebase.firebaseio.com/');
+  var paper = Raphael(document.getElementById("canvas"), width, height);
+  var background = paper.rect(0, 0, width, height).attr({fill:"white", stroke:"white"});
+
+
+  var drawGraph = function (snapshot) {
+    var graphobj = snapshot.val();
+    graphobj.options.splice(0, 0, paper);
+    var drawing = new Drawing(graphobj.type, graphobj.options);
+    for (var key in graphobj.attrs) {
+      drawing.updateAttrs(key, graphobj.attrs[key]);
+    }
+    console.log(drawing);
+  };
+
+  dataRef.on('child_added', drawGraph);
+
 
 
   var graphs = [];
@@ -165,6 +169,7 @@ Template.canvas.rendered = function () {
   var line = null;
   var lastDate = new Date();
   $("#lineButton").click(function (event) {
+
     line = null;
     background.drag(function (dx, dy, x, y, event) {
       x -= paper.canvas.offsetLeft;
