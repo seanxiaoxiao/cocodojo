@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Entypo";
+  src: url('entypo.ttf');
+  src: local('☺'),
+      url('entypo.woff') format('woff'),
+      url('entypo.tff') format('truetype'),
+      url('tagesscrift.svg#font') format('svg');
+}
+
+.icon {
+  cursor: pointer;;
+  list-style: none;
+  display: list-item;
+  font-size: 42.5%;
+  float: left;
+  margin: 0px 0px 0 0;
+  padding: 0 0px 0px;
+  width: 40px;
+  height: 40px;
+  text-align: left;
+}
+
+li span.pictogram {
+  font-family: "entypo";
+  font-size: 6em;
+  line-height: 1;
+  color: #333;
+}
+
+li p.unicode {
+  margin: 0;
+  font-size: 1.4em;
+  color: #333;
+}
+
+li p.html {
+  margin: 0px 0 0;
+  font-size: 1.1em;
+}

@@ -1,4 +1,5 @@
 var toggleHandler = function(toggle) {
+    alert("here");
     var toggle = toggle;
     var radio = $(toggle).find("input");
 

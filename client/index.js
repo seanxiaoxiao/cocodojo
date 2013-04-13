@@ -1,7 +1,6 @@
 
 if (Meteor.isClient) {
   CodeSession = new Meteor.Collection("CodeSessions");
-  SessionGraph = new Meteor.Collection("SessionGraphs");
   cocodojo = {};
 
   Meteor.startup(function () {
@@ -11,21 +10,37 @@ if (Meteor.isClient) {
         var codeSessionId = CodeSession.insert({name: "New Dojo"});
         Router.navigate(codeSessionId, false);
       }
-      $("body").on("ondragover", function(e) {
-        alert("Xvx");
-        e.preventDefault();
-        return false;
-      });
-      $("body").on("drop", function() {
-        e.preventDefault();
-        return false;
-      });
-      $("body").on("dropover", function() {
-        e.preventDefault();
-        return false;
-      });
     });
   });
 
+  Template.dojo.rendered = function() {
+    var toggleHandler = function(toggle) {
+    
+      var toggle = toggle;
+      var radio = $(toggle).find("input");
+
+      var checkToggleState = function() {
+          if (radio.eq(0).is(":checked")) {
+              $(toggle).removeClass("toggle-off");
+          } else {
+              $(toggle).addClass("toggle-off");
+          }
+      };
+
+      checkToggleState();
+
+      radio.eq(0).click(function() {
+          $(toggle).toggleClass("toggle-off");
+      });
+
+      radio.eq(1).click(function() {
+          $(toggle).toggleClass("toggle-off");
+      });
+    };
+
+    $(".toggle").each(function(index, toggle) {
+        toggleHandler(toggle);
+    });
+  }
 
 }

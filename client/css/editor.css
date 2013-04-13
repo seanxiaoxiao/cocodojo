@@ -1,1 +1,10 @@
-#editorInstance { width: 100%; height: 500px;}
+#editorContainer { position: relative; }
+#editorInstance { width: 100%; height: 600px;}
+#editorInstance .progress {margin-top: 10px;}
+#editorTools { 
+	display: inline-block;
+	position: absolute; right: 1.9em; top: 1.2em;
+	z-index: 2;
+	opacity: 1;
+}
+#editorTools select { display: inline-block; visibility: visible; top: 0; margin: 0.2em; width: 10em;}

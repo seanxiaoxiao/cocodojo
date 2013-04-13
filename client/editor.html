@@ -1,9 +1,22 @@
 <template name="editor">
-<<<<<<< HEAD
-    {{codeSession._id}}
-    {{codeSession.name}}
-    <div id="editorInstance">var test = 'a';</div>
-=======
+	<div id="editorTools">
+		<select id="editorLang">
+			<option value="html">HTML</option>
+			<option value="javascript" selected>JavaScript</option>
+			<option value="c_cpp">C/C++</option>
+			<option value="java">Java</option>
+			<option value="ruby">Ruby</option>
+		</select><br>
+		<select id="editorTheme">
+			<option value="monokai" selected>Monokai</option>
+			<option value="ambiance">Ambiance</option>
+			<option value="textmate">TextMate</option>
+			<option value="xcode">XCode</option>
+			<option value="terminal">Terminal</option>
+		</select>
+	</div>
     <div id="editorInstance"></div>
->>>>>>> 2aa9bd62a06b1ec4ff6b7a053b655604e83d469a
+    <div class="progress">
+        <div class="bar"></div>
+    </div>
 </template>

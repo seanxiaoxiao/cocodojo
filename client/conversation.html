@@ -1,16 +1,8 @@
 <template name="conversations">
     <div class="well">
-        <p>
-
-        </p>
-<<<<<<< HEAD
-        <textarea class="input-block-level" style="margin-top: 0px; margin-bottom: 10px; height: 495px;">
-            {{ all }}
-        </textarea>
-=======
-        <textarea class="input-block-level" style="margin-top: 0px; margin-bottom: 10px; height: 495px;">{{ all }}</textarea>
->>>>>>> 2aa9bd62a06b1ec4ff6b7a053b655604e83d469a
-        <input type="text" id="message" placeholder="Say something...">
+        <textarea class="input-block-level" style="height: 451px; resize:none">{{ all }}</textarea>
+        <input class="input-block-level" type="text" id="message" placeholder="Say something...">
+        <a id="sendBtn" class="btn btn-block btn-primary">Send</a>
     </div>
-    <a id="sendBtn" class="btn">Send</a>
+    
 </template>
