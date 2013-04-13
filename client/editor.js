@@ -5,6 +5,3 @@ Template.editor.codeSession = function() {
 };
 
 // Manual Manipulation
-var editorInstance = ace.edit("editor");
-editorInstance.setTheme("ace/theme/monokai");
-editorInstance.getSession().setMode("ace/mode/javascript");
