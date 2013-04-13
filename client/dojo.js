@@ -117,31 +117,34 @@ Drawing.prototype.binaryTree = function(paper, startX, startY, treeHeight){
   }
   return paper.setFinish();
 }
-Drawing.prototype.updateAttrs = function(attrs){
-    this.element.attr(attrs);
+Drawing.prototype.updateAttrs = function(){
+    this.element.attr.apply(this.element, arguments);
 }
 
 Drawing.prototype.remove = function(){
     this.element.remove();
     delete this;
 }
-Template.dojo.rendered = function(){
+Template.canvas.rendered = function(){
     var width = 1000;
     var height = 1000;
 
     var paper = Raphael(document.getElementById("canvas"), width, height);
     var background = paper.rect(0,0, width, height).attr({fill: "white", stroke: "white"});
+
+    /*
     var drawing = new Drawing("line", [paper,10, 20, 30, 40]);
     var drawing = new Drawing("rectangle", [paper,10, 10, 100, 200]);
     var drawing = new Drawing("text", [paper,10, 10, "Helllo, world!"]); 
     var obj = new Drawing("oneDimensionArray", [paper, 10, 20, [1,2,3, 4, 5]]);
-
     var drawing = new Drawing("circle", [paper,70, 70, 50]);
     var rectangle = new Drawing("rectangle", [paper, 20, 20, 40, 50]);
     var binaryTree = new Drawing("binaryTree", [paper, 100, 20, 4]);
-    
-    var isDrawLine = false;
+    */
+    var graphs = [];
+
     var line = null;
+    var lastDate = new Date();
     $("#lineButton").click(function(event){
         line = null;
         background.drag(function(dx, dy, x, y, event){
@@ -149,9 +152,18 @@ Template.dojo.rendered = function(){
             y -= paper.canvas.offsetTop;
             if(!line.hasOwnProperty("element")){
                 line.element = new Drawing("line", [paper, line.x, line.y, x, y]);
+                line.element.codeSessionId = Session.get("codeSessionId");
+                SessionGraph.insert({graph: line.element});
             }
             else{
-                line.element.updateAttrs("path", "M" + line.x + "," + line.y + "L" + x + "," + y);  
+                line.element.updateAttrs("path", "M" + line.x + "," + line.y + "L" + x + "," + y);
+              console.log(new Date() - lastDate);
+              console.log(new Date() - lastDate > 5000);
+                if (new Date() - lastDate > 5000) {
+                  CodeSession.update({_id: Session.get("codeSessionId")}, {"$set": {graphs: line.element }});
+                  lastDate = new Date();
+                }
+                console.log(line.element);
             }
         }, function(x, y , event){
             //drag Start
@@ -163,21 +175,22 @@ Template.dojo.rendered = function(){
         });
 
     });
+    
     var deleteHandler = function(event){
         paper.forEach(function(el2){
             el2.unclick(deleteHandler);
-            el2.unhover(highlighter, highlightRemover);
+            el2.unhover(highlightHandler, unHighlightHandler);
         });
         this.data("mother").element.g.remove();
         this.data("mother").remove();
     };
-    var highlighter = function(){
+    var highlightHandler = function(){
         this.data("mother").element.g = this.data("mother").element.glow({
             color: "#0FF",
             width: 100
         });
     };
-    var highlightRemover = function(){
+    var unHighlightHandler = function(){
         this.data("mother").element.g.remove();
     }
     $("#deleteButton").click(function(event){
@@ -185,9 +198,76 @@ Template.dojo.rendered = function(){
             //add click listener on every object; 
             if(el == this) return;
             el.click(deleteHandler);
-            el.hover(highlighter, highlightRemover, el, el);
+            el.hover(highlightHandler, unHighlightHandler, el, el);
         }, background);
     });
+
+
+  var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
+
+  //Create a reference to the pixel data for our drawing.
+  var pixelDataRef = new Firebase('https://sean-firebase.firebaseio.com/');
+
+  // Set up our canvas
+  var myCanvas = document.getElementById('drawing-canvas');
+  var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
+  if (myContext == null) {
+    alert("You must use a browser that supports HTML5 Canvas to run this demo.");
+    return;
+  }
+
+  //Keep track of if the mouse is up or down
+  myCanvas.onmousedown = function () {mouseDown = 1;};
+  myCanvas.onmouseout = myCanvas.onmouseup = function () {
+    mouseDown = 0, lastPoint = null;
+  };
+
+  //Draw a line from the mouse's last position to its current position
+  var drawLineOnMouseMove = function(e) {
+    if (!mouseDown) return;
+
+    // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
+    var offset = $('canvas').offset();
+    var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
+      y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
+    var x0 = (lastPoint == null) ? x1 : lastPoint[0];
+    var y0 = (lastPoint == null) ? y1 : lastPoint[1];
+    var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+    var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
+    while (true) {
+      //write the pixel into Firebase, or if we are drawing white, remove the pixel
+      pixelDataRef.child(x0 + ":" + y0).set(currentColor === "fff" ? null : currentColor);
+
+      if (x0 == x1 && y0 == y1) break;
+      var e2 = 2 * err;
+      if (e2 > -dy) {
+        err = err - dy;
+        x0 = x0 + sx;
+      }
+      if (e2 < dx) {
+        err = err + dx;
+        y0 = y0 + sy;
+      }
+    }
+    lastPoint = [x1, y1];
+  }
+  $(myCanvas).mousemove(drawLineOnMouseMove);
+  $(myCanvas).mousedown(drawLineOnMouseMove);
+
+  // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
+  // Note that child_added events will be fired for initial pixel data as well.
+  var drawPixel = function(snapshot) {
+    var coords = snapshot.name().split(":");
+    myContext.fillStyle = "#" + snapshot.val();
+    myContext.fillRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
+  }
+  var clearPixel = function(snapshot) {
+    var coords = snapshot.name().split(":");
+    myContext.clearRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
+  }
+  pixelDataRef.on('child_added', drawPixel);
+  pixelDataRef.on('child_changed', drawPixel);
+  pixelDataRef.on('child_removed', clearPixel);
 }
 
 

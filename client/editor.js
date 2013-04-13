@@ -80,32 +80,28 @@ Template.editor.rendered = function() {
   });
 
   filepicker.setKey("A5FhMuKiRViDaQtnHUotPz");
-  filepicker.makeDropPane($('#exampleDropPane')[0], {
+  filepicker.makeDropPane($('#editorInstance')[0], {
     multiple: true,
     dragEnter: function() {
-      $("#exampleDropPane").html("Drop to upload").css({
-        'backgroundColor': "#E0E0E0",
-        'border': "1px solid #000"
-      });
+//      $("#exampleDropPane").html("Drop to upload").css({
+//      });
     },
     dragLeave: function() {
-      $("#exampleDropPane").html("Drop files here").css({
-        'backgroundColor': "#F6F6F6",
-        'border': "1px dashed #666"
-      });
+      $(".bar").css("width", "0%");
     },
     onSuccess: function(fpfiles) {
-      $("#exampleDropPane").text("Done, see result below");
+//      $("#exampleDropPane").text("Done, see result below");
       filepicker.read(fpfiles[0], function(data){
         console.log(fpfiles[0].filename);
         cocodojo.editor.editorInstance.setValue(data);
       });
     },
     onError: function(type, message) {
-      $("#localDropResult").text('('+type+') '+ message);
+//      $("#localDropResult").text('('+type+') '+ message);
     },
     onProgress: function(percentage) {
-      $("#exampleDropPane").text("Uploading ("+percentage+"%)");
+
+      $(".bar").css("width", percentage + "%");
     }
   });
 };

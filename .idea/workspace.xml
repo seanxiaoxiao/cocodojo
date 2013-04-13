@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb720110-574b-4dff-bd83-b5fc87ea2b55" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/jquery-1.9.1.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/cocodojo.html" afterPath="$PROJECT_DIR$/client/cocodojo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/editor.css" afterPath="$PROJECT_DIR$/client/css/editor.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.html" afterPath="$PROJECT_DIR$/client/dojo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dojo.js" afterPath="$PROJECT_DIR$/client/dojo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.html" afterPath="$PROJECT_DIR$/client/editor.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/editor.js" afterPath="$PROJECT_DIR$/client/editor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.js" afterPath="$PROJECT_DIR$/client/index.js" />
@@ -25,24 +30,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dojo.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/dojo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="44" selection-start="6489" selection-end="6500" vertical-scroll-proportion="-114.23077">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="drawing.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/drawing.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="drawing.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/drawing.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,7 +42,7 @@
       <file leaf-file-name="editor.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="51" selection-start="112" selection-end="112" vertical-scroll-proportion="-1.25">
+            <state line="3" column="8" selection-start="108" selection-end="111" vertical-scroll-proportion="-1.875">
               <folding />
             </state>
           </provider>
@@ -64,16 +51,34 @@
       <file leaf-file-name="conversation.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/conversation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="75" selection-start="887" selection-end="979" vertical-scroll-proportion="-17.307692">
+            <state line="19" column="0" selection-start="524" selection-end="524" vertical-scroll-proportion="-10.192307">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="dojo.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/dojo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="252" column="3" selection-start="8677" selection-end="8677" vertical-scroll-proportion="0.7783019">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editor.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="41" selection-start="3112" selection-end="3112" vertical-scroll-proportion="0.5754717">
+            <state line="89" column="31" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editor.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/css/editor.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="9" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -82,7 +87,7 @@
       <file leaf-file-name="cocodojo.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/cocodojo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="108" selection-start="280" selection-end="280" vertical-scroll-proportion="-1.875">
+            <state line="5" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="-3.125">
               <folding />
             </state>
           </provider>
@@ -91,7 +96,7 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="-6.923077">
+            <state line="14" column="0" selection-start="443" selection-end="443" vertical-scroll-proportion="-8.076923">
               <folding />
             </state>
           </provider>
@@ -100,7 +105,7 @@
       <file leaf-file-name="dojo.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/dojo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="-3.125">
+            <state line="10" column="42" selection-start="345" selection-end="345" vertical-scroll-proportion="-6.25">
               <folding />
             </state>
           </provider>
@@ -119,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/client/cmu_hackathon.html" />
         <option value="$PROJECT_DIR$/client/drawing.html" />
         <option value="$PROJECT_DIR$/client/js/application.js" />
         <option value="$PROJECT_DIR$/lib/drawing.js" />
@@ -129,12 +133,13 @@
         <option value="$PROJECT_DIR$/server/CodeSession.js" />
         <option value="$PROJECT_DIR$/client/conversation.html" />
         <option value="$PROJECT_DIR$/client/conversation.js" />
-        <option value="$PROJECT_DIR$/client/dojo.js" />
-        <option value="$PROJECT_DIR$/client/dojo.html" />
         <option value="$PROJECT_DIR$/client/index.js" />
         <option value="$PROJECT_DIR$/client/editor.html" />
-        <option value="$PROJECT_DIR$/client/cocodojo.html" />
+        <option value="$PROJECT_DIR$/client/css/editor.css" />
         <option value="$PROJECT_DIR$/client/editor.js" />
+        <option value="$PROJECT_DIR$/client/dojo.html" />
+        <option value="$PROJECT_DIR$/client/cocodojo.html" />
+        <option value="$PROJECT_DIR$/client/dojo.js" />
       </list>
     </option>
   </component>
@@ -371,44 +376,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/dojo.js">
+    <entry file="file://$PROJECT_DIR$/client/drawing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="44" selection-start="6489" selection-end="6500" vertical-scroll-proportion="-114.23077">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/editor.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="9" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="31" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="-6.923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/dojo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="-3.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/cocodojo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="108" selection-start="280" selection-end="280" vertical-scroll-proportion="-1.875">
+        <state line="14" column="0" selection-start="443" selection-end="443" vertical-scroll-proportion="-8.076923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/conversation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="75" selection-start="887" selection-end="979" vertical-scroll-proportion="-17.307692">
+        <state line="19" column="0" selection-start="524" selection-end="524" vertical-scroll-proportion="-10.192307">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="51" selection-start="112" selection-end="112" vertical-scroll-proportion="-1.25">
+        <state line="3" column="8" selection-start="108" selection-end="111" vertical-scroll-proportion="-1.875">
           <folding />
         </state>
       </provider>
@@ -420,16 +425,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/drawing.js">
+    <entry file="file://$PROJECT_DIR$/client/cocodojo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="-3.125">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/editor.js">
+    <entry file="file://$PROJECT_DIR$/client/dojo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="41" selection-start="3112" selection-end="3112" vertical-scroll-proportion="0.5754717">
+        <state line="10" column="42" selection-start="345" selection-end="345" vertical-scroll-proportion="-6.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/dojo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="252" column="3" selection-start="8677" selection-end="8677" vertical-scroll-proportion="0.7783019">
           <folding />
         </state>
       </provider>
