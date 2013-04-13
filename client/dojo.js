@@ -56,8 +56,18 @@ Drawing.prototype.init = function(){
     this.element.dblclick(function(){
     }, this);
 }
-Drawing.prototype.stringify = function(){
-    return { type: this.type, attrs: this.attrs, options: this.options};
+Drawing.prototype.simplify = function(){
+    var obj = {};
+    obj.type = this.type;
+    obj.attrs = {};
+    for(var key in this.attrs){
+        obj.attrs.key = this.attrs[key];
+    }
+    obj.options = [];
+    for(var i =1 ; i < this.options.length; i++){
+        obj.options.push(this.options[i]);
+    }
+    return obj;
 }
 Drawing.prototype.line = function(paper, startX, startY, endX, endY){
     paper.setStart();
@@ -157,7 +167,7 @@ Template.canvas.rendered = function(){
             if(!line.hasOwnProperty("element")){
                 line.element = new Drawing("line", [paper, line.x, line.y, x, y]);
                 line.element.codeSessionId = Session.get("codeSessionId");
-                console.log(JSON.stringify(line.element.stringify()));
+                console.log(JSON.stringify(line.element.simplify()));
             }
             else{
                 line.element.updateAttrs("path", "M" + line.x + "," + line.y + "L" + x + "," + y);
@@ -175,8 +185,8 @@ Template.canvas.rendered = function(){
             line = {x: x, y: y};
         }, function(x, y, event){
             background.undrag();
-            console.log(line.element.stringify());
-            SessionGraph.insert({graph: line.element.stringify()});
+            console.log(line.element.simplify());
+            SessionGraph.insert({graph: line.element.simplify()});
             //CodeSession.update({_id: Session.get("codeSessionId")}, {"$set": {graphs: line.element.stringify() }});
         });
 
