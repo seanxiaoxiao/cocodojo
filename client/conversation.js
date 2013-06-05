@@ -21,7 +21,7 @@ Template.conversations.all = function() {
 Template.conversations.rendered = function() {
   cocodojo.conversation = cocodojo.conversation || {};
   if (cocodojo.conversation.name == null) {
-    cocodojo.conversation.name = prompt("Please input your user name.") || "Anonymous";
+    cocodojo.conversation.name = /*prompt("Please input your user name.") */ false|| "Anonymous";
   }
 };
 

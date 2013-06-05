@@ -1,5 +1,5 @@
 // template.canvas.rendered = function(){
-	
+
 // 	$("#arrayButton").click(function() {
 // 		console.log("xxxfdsfds");
 // 	});
@@ -9,4 +9,3 @@
 // 	// 	var arraySize=prompt("How large would you like your array?","0-100");
 // 	// });
 // }
-
