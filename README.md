@@ -1,6 +1,15 @@
+
+This repository will not being updated. 
+
+We are currently refactoring and improving the editor in another repository: [here](https://github.com/TeamCocoDojo/cocodojo)
+
+
+====================
+
 CoCo DoJo
 =============
 CMU | May 21 2013
+
 
 Objective
 -------------
