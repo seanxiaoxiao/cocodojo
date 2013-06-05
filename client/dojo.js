@@ -84,7 +84,7 @@ Drawing.prototype.randomLine = function(paper, pts){
         }
     }
     paper.path(path);
-    return paper.setFinish(); 
+    return paper.setFinish();
 }
 Drawing.prototype.circle = function (paper, centerX, centerY, radius) {
     paper.setStart();
@@ -137,7 +137,7 @@ Drawing.prototype.binaryTree = function (paper, startX, startY, treeHeight) {
         else {
             for (var i = 0; i < Math.pow(2, level); i++) {
                 var cx = (last_children[last_index].attrs.cx + last_children[last_index + 1].attrs.cx) / 2;
-                var cy = startY + level * 2 * r; 
+                var cy = startY + level * 2 * r;
                 var e = paper.path("M" + last_children[last_index].attrs.cx + "," + last_children[last_index].attrs.cy + "L" + cx + "," + cy);
                 e = paper.path("M" + last_children[last_index + 1].attrs.cx + "," + last_children[last_index +1].attrs.cy + "L" + cx + "," + cy);
                 last_index += 2;
@@ -296,16 +296,16 @@ Template.canvas.rendered = function () {
         };
         background.click(handler);
     });
-    var randomLine = null; 
+    var randomLine = null;
     $("#textButton").click(function(event){
         var handler = function(dx,dy,x,y,event){
             if(!randomLine.hasOwnProperty("element")){
-                randomLine.element = new Drawing("randomLine", [paper, randomLine.pts]); 
+                randomLine.element = new Drawing("randomLine", [paper, randomLine.pts]);
             }
             else{
                 x -= paper.canvas.offsetLeft;
                 y -= paper.canvas.offsetTop;
-                randomLine.pts.push({"x":x, "y":y}); 
+                randomLine.pts.push({"x":x, "y":y});
                 var path = "";
                 for(var i=0;i<randomLine.pts.length; i++){
                     if(i==0){
@@ -333,11 +333,11 @@ Template.canvas.rendered = function () {
         });
     });
     $("#treeButton").click(function (event) {
-        var element = null; 
+        var element = null;
         var handler = function(event, x, y){
             x -= paper.canvas.offsetLeft;
             y -= paper.canvas.offsetTop;
-            element = new Drawing("binaryTree", [paper, x, y, 4]); 
+            element = new Drawing("binaryTree", [paper, x, y, 4]);
         var newPushRef = dataRef.push();
         newPushRef.set(element.simplify());
             background.unclick(handler);
@@ -369,4 +369,3 @@ var CocoDojoRouter = Backbone.Router.extend({
                    }
 });
 Router = new CocoDojoRouter;
-

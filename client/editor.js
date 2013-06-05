@@ -37,7 +37,7 @@ Template.editor.rendered = function() {
         pendDeltas.push(deltas[i].delta);
       }
     }
-      
+
     if(pendDeltas.length > 0){
       cocodojo.editor.updateDue = true;
       cocodojo.editor.editorInstance.getSession().getDocument().applyDeltas(pendDeltas);
@@ -69,14 +69,14 @@ Template.editor.rendered = function() {
     cocodojo.editor.update(codeSession.Deltas);
     cocodojo.editor.addComment(codeSession.Comments);
   }, 2000);
-  
+
 
   // Manual Manipulation
   cocodojo.editor.editorInstance.getSession().getDocument().on("change", function(e){
     if(cocodojo.editor.updateDue){ return 0; }
     else{
       CodeSession.update(
-        {_id: Session.get("codeSessionId")}, 
+        {_id: Session.get("codeSessionId")},
         { $push:
           {
             Deltas: { delta: e.data, sender_uid: cocodojo.editor.local_uid }
@@ -123,7 +123,7 @@ Template.editor.rendered = function() {
       $(this).css('background-color', 'khaki');
       if($.trim(userComment) != ''){
       CodeSession.update(
-        {_id: Session.get("codeSessionId")}, 
+        {_id: Session.get("codeSessionId")},
           { $push:
             {
               Comments: { line: $(this).html(), text: userComment, sender_uid: cocodojo.editor.local_uid }
