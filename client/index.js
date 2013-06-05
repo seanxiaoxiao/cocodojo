@@ -1,4 +1,3 @@
-
 if (Meteor.isClient) {
   CodeSession = new Meteor.Collection("CodeSessions");
   cocodojo = {};
@@ -15,7 +14,7 @@ if (Meteor.isClient) {
 
   Template.dojo.rendered = function() {
     var toggleHandler = function(toggle) {
-    
+
       var toggle = toggle;
       var radio = $(toggle).find("input");
 
@@ -55,5 +54,4 @@ if (Meteor.isClient) {
         toggleHandler(toggle);
     });
   }
-
 }
